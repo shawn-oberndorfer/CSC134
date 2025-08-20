@@ -9,5 +9,7 @@ Shawn Oberndorfer
 using namespace std;
 
 int main() {
+    cout << "Hello, World!" << endl;
+    cout << "My foo is Video Games." << endl;
     return 0;
 }
