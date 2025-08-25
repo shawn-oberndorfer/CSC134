@@ -19,7 +19,9 @@ int main(){
 
     cout << "Enter your Name" << endl;
     cin >> first_name;
+    cout << endl;
     cout << "Hello, " << first_name << endl;
+    cout << endl;
 
     //output
     return 0; // no errors
