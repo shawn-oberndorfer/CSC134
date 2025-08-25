@@ -14,7 +14,12 @@ using namespace std;
 
 int main(){
     //SFX: Greet User
-    cout << "Hello, user" << endl;
+    // strings hold words
+    string first_name = "";
+
+    cout << "Enter your Name" << endl;
+    cin >> first_name;
+    cout << "Hello, " << first_name << endl;
 
     //output
     return 0; // no errors
