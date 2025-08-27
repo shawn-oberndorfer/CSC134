@@ -28,6 +28,7 @@ cin >> wanted_items;
 double total_cost = wanted_items * cost_per;
 
 cout << "If you were to buy " << wanted_items << " " << item_name << "s your total cost would be $" << total_cost << endl;
+cout << "Thank you for shopping with us today!" << endl;
 
 
 return 0;
