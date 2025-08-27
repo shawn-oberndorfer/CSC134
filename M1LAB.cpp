@@ -10,7 +10,9 @@ Pokemon Card Sales Program
 using namespace std;
 
 int main(){
-string item = "Pokemon";
+string item      = "Pokemon";
+int    nub_items = 1000;
+double cost_per  = 5.99;
 
 cout << "Welcome to the " << item << " store!" << endl;
 
