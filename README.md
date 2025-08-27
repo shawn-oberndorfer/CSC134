@@ -12,3 +12,5 @@ Other Programs:
  [Hello User](https://github.com/shawn-oberndorfer/CSC134/blob/main/M1T1_Hello_User.cpp)
 
  [Basic Sales Program for M1LAB](https://github.com/shawn-oberndorfer/CSC134/blob/main/M1LAB.cpp)
+
+ [Movie Description for M1HW](https://github.com/shawn-oberndorfer/CSC134/blob/main/M1HW1.cpp)
