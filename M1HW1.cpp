@@ -18,7 +18,7 @@ cout << movie_name << " is a film about a talking racecar who gets lost in a sma
 cout << "One of the most famous quotes from the film is Lightning McQueen's \"Kachow\". " << endl;
 cout << "I also love the quote from Lightning Mcqueen \"Float like a catalac sting like a beaver\"." << endl;
 cout << "One of my favorite scenes from the film was where Lightning is racing Doc down a dirt track and losses miserably by crashing into a cactus after talking smack." << endl;
-
+cout << "Another scene that I really like would be the scene where Lightning's tires pop and he ties the race with his tongue." << endl;
 
 
 return 0;              
