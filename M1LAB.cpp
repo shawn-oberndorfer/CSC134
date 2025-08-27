@@ -27,7 +27,7 @@ cin >> wanted_items;
 
 double total_cost = wanted_items * cost_per;
 
-cout << "if you were to buy " << wanted_items << " " << item_name << "s your total cost would be $" << total_cost << endl;
+cout << "If you were to buy " << wanted_items << " " << item_name << "s your total cost would be $" << total_cost << endl;
 
 
 return 0;
