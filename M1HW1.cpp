@@ -9,8 +9,9 @@ Movie Talk
 using namespace std;
 
 int main(){
-
-
+string movie_name   = "";
+int    release_year = 0;
+double gross_income = 0.0;
 
 return 0;
 }
