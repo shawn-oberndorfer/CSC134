@@ -18,6 +18,10 @@ double cost_per     = 5.99;
 cout << "Welcome to the " << item_name << " store!" << endl;
 cout << "Each " << item_name << " is $" << cost_per << endl;
 cout << "We have " << num_items << " cards in stock." << endl;
+
+double inventory_cost = num_items * cost_per;
+
+cout << "Buying them all would cost $" << inventory_cost << endl;
 cout << "How many " << item_name << "s would you like to buy?" << endl;
 cin >> wanted_items;
 
