@@ -35,9 +35,9 @@ int main(){
     crate_profit = crate_sale_price - crate_production_cost;
 
     cout << "Each crate has a volume of " << crate_volume << " cubic feet." << endl;
-    cout << "The cost to make each crate is " << crate_production_cost << "." << endl;
-    cout << "The sale price for each crate is " << crate_sale_price << "." << endl;
-    cout << "The profit per crate sold would be " << crate_profit << "." << endl;
+    cout << "The cost to make each crate is $" << crate_production_cost << "." << endl;
+    cout << "The sale price for each crate is $" << crate_sale_price << "." << endl;
+    cout << "The profit per crate sold would be $" << crate_profit << "." << endl;
 
 
 
