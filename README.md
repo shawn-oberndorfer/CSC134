@@ -14,3 +14,5 @@ Other Programs:
  [Basic Sales Program for M1LAB](https://github.com/shawn-oberndorfer/CSC134/blob/main/M1LAB.cpp)
 
  [Movie Description for M1HW](https://github.com/shawn-oberndorfer/CSC134/blob/main/M1HW1.cpp)
+ 
+ [Crate Calculator for M2LAB1](https://github.com/shawn-oberndorfer/CSC134/blob/main/M2LAB1.cpp)
