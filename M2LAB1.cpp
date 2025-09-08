@@ -11,15 +11,16 @@ using namespace std;
 
 int main(){
 
+    const double COST_PER_CUBIC_FOOT   = 0.23;
+    const double CHARGE_PER_CUBIC_FOOT = 0.5;
+
     double crate_height          = 0;
     double crate_depth           = 0;
     double crate_width           = 0;
     double crate_volume          = 0;
-    double COST_PER_CUBIC_FOOT   = 0.23;
     double crate_production_cost = 0;
-    double CHARGE_PER_CUBIC_FOOT = 0.5;
     double crate_sale_price      = 0;
-    double crate_profit         = 0;
+    double crate_profit          = 0;
 
     cout << "What is the height of you crate in feet?" << endl;
     cin >> crate_height;
