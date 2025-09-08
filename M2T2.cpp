@@ -27,7 +27,7 @@ int main(){
 
     cout << "Subtotal: $" << meal_price << endl;
     cout << endl;
-    cout << "Tax 1: $" << tax_percent << endl;
+    cout << "Tax 1: " << tax_percent << endl;
     cout << endl;
     cout << "Total: $" << total_cost_rounded << endl;
 
