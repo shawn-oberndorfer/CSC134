@@ -39,8 +39,5 @@ int main(){
     cout << "The sale price for each crate is $" << crate_sale_price << "." << endl;
     cout << "The profit per crate sold would be $" << crate_profit << "." << endl;
 
-
-
-
     return 0;
 }
