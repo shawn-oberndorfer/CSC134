@@ -8,15 +8,15 @@ Last Worked On 9/10/2025
 #include <iostream>
 using namespace std;
 
-int main(){
+int main() {
     
-    char   depositConfirm;
-    char   withdrawConfirm;
+    string depositConfirm;
+    string withdrawConfirm;
     string accountName;
-    double oldAccountBalance;
-    double withdrawAmount;
-    double depositAmount;
-    double newAccountBalance;
+    double oldAccountBalance = 0.0;
+    double withdrawAmount = 0.0;
+    double depositAmount = 0.0;
+    double newAccountBalance = 0.0;
     int    accountNumber = 90876;
 
 
@@ -29,29 +29,29 @@ int main(){
     cout << "Would you like to deposit money into your account? (Enter Y/N)" << endl;
     cin >> depositConfirm;
 
-    if (depositConfirm = "Y")
+    if (depositConfirm == "Y")
     {
         cout << "How much money would you like to deposit?" << endl;
         cin >> depositAmount;
         cout << depositAmount << "$ has been deposited into your account." << endl;
-    } else 
+    } 
 
     cout << "Would you like to withdraw any money from your account? (Enter Y/N)" << endl;
     cin >> withdrawConfirm;
 
-    if (withdrawConfirm = "Y")
+    if (withdrawConfirm == "Y")
     {
         cout << "How much money would you like to withdraw from your account?" << endl;
         cin >> withdrawAmount;
         cout << withdrawAmount << "$ has been withdrawn from your account." << endl;
-    } else
+    }
 
     newAccountBalance = oldAccountBalance + depositAmount - withdrawAmount;
 
     cout << "Account Name:             " << accountName << endl;
     cout << "Account Number:           " << accountNumber << endl;
-    cout << "Original Account Balance: " << oldAccountBalance << endl;
-    cout << "New Account Balance:      " << newAccountBalance << endl;
+    cout << "Original Account Balance: $" << oldAccountBalance << endl;
+    cout << "New Account Balance:      $" << newAccountBalance << endl;
 
 
     return 0;
