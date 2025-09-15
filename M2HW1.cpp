@@ -10,16 +10,25 @@ Last Worked On 9/10/2025
 using namespace std;
 
     int  programSelect;
-    char programRunAgain = 'N';
+    char programRunAgain = 'Y';
 
 int main() {
+
+    do{
+
     welcome();
 
     if(programSelect = 1){
         bankAccount();
-
+        ending();
+    } else if(programSelect = 2){
+        updatedCrates();
+        ending();
     }
 
+    }while (programRunAgain = 'Y');
+   
+    
 
     
 
@@ -34,8 +43,10 @@ void welcome() {
     cin >> programSelect;
 }
 void ending(){
-    cout << "Would you like to start another program?" << endl;
+    programRunAgain = 'N';
+    cout << "Would you like to start another program? (Y/N)" << endl;
     cin >> programRunAgain;
+    programRunAgain = toupper(programRunAgain);
 }
 void bankAccount() {
     char   depositConfirm;
@@ -91,4 +102,8 @@ void bankAccount() {
     cout << "Account Number:           " << accountNumber << endl;
     cout << "Original Account Balance: $" << roundedOldAccountBalance << endl;
     cout << "New Account Balance:      $" << roundedNewAccountBalance << endl;
+}
+
+void updatedCrates(){
+
 }
