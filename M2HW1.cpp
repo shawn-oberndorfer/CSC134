@@ -155,5 +155,14 @@ void pizzaParty(){
 }
 
 void cheer(){
+string letsGo    = "Let's Go ";
+string school    = "FTCC"; 
+string team      = "Trojans";
+string cheerOne  = letsGo + " " + school;
+string cheerTwo  = letsGo + " " + team;
 
+cout << cheerOne << endl;
+cout << cheerOne << endl;
+cout << cheerOne << endl;
+cout << cheerTwo << endl;
 }
