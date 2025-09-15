@@ -7,6 +7,7 @@ Last Worked On 9/15/2025
 */
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
     int  programSelect;
@@ -114,16 +115,12 @@ void bankAccount() {
         cout << withdrawAmount << "$ has been withdrawn from your account." << endl;
     }
 
-    double roundedOldAccountBalance = round(oldAccountBalance * 100) / 100;
-
     newAccountBalance = (oldAccountBalance + depositAmount) - withdrawAmount;
-
-    double roundedNewAccountBalance = round(newAccountBalance * 100) / 100;
-
+    cout << setprecision(2) << fixed;
     cout << "Account Name:             " << accountName << endl;
     cout << "Account Number:           " << accountNumber << endl;
-    cout << "Original Account Balance: $" << roundedOldAccountBalance << endl;
-    cout << "New Account Balance:      $" << roundedNewAccountBalance << endl;
+    cout << "Original Account Balance: $" << oldAccountBalance << endl;
+    cout << "New Account Balance:      $" << newAccountBalance << endl;
 }
 
 void updatedCrates(){
@@ -151,6 +148,8 @@ void updatedCrates(){
     crate_sale_price = crate_volume * CHARGE_PER_CUBIC_FOOT;
     crate_profit = crate_sale_price - crate_production_cost;
 
+
+    cout << setprecision(2) << fixed;
     cout << "Each crate has a volume of " << crate_volume << " cubic feet." << endl;
     cout << "The cost to make each crate is $" << crate_production_cost << "." << endl;
     cout << "The sale price for each crate is $" << crate_sale_price << "." << endl;
@@ -159,6 +158,19 @@ void updatedCrates(){
 }
 
 void pizzaParty(){
+    int pizzasOrdered;
+    int slicesPerPizza;
+    int peopleAttending;
+
+    cout << "How many pizzas were ordered?" << endl;
+    cin >> pizzasOrdered;
+    cout << "How many slices does each pizza have?" << endl;
+    cin >> slicesPerPizza;
+    cout << "How many people are attending?" << endl;
+    cin >> peopleAttending;
+
+    int totalSlices    = pizzasOrdered * slicesPerPizza;
+    int leftoverSlices = totalSlices - (3 * peopleAttending);
 
 }
 
