@@ -30,6 +30,7 @@ int main(){
     cout << endl;
     cout << "Subtotal: $" << meal_price << endl;
     cout << "Tax 1:    $" << tax_amount_rounded << endl;
+    cout << endl;
     cout << "Total:    $" << total_cost_rounded << endl;
 
     
