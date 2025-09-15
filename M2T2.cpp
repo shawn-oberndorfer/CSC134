@@ -8,6 +8,7 @@ This program prints a recipt for a simple meal.
 */
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
 int main(){
@@ -23,15 +24,16 @@ int main(){
     tax_amount = meal_price * tax_percent;
     total_cost = meal_price + tax_amount;
 
-    total_cost_rounded = round(total_cost * 100.0) / 100.0;
-    tax_amount_rounded = round(tax_amount * 100.0) / 100.0;
+    //total_cost_rounded = round(total_cost * 100.0) / 100.0;
+    //tax_amount_rounded = round(tax_amount * 100.0) / 100.0;
 
+    cout << setprecision(2) << fixed;
     cout << "Burger(1) $" << meal_price << endl;
     cout << endl;
     cout << "Subtotal: $" << meal_price << endl;
-    cout << "Tax 1:    $" << tax_amount_rounded << endl;
+    cout << "Tax 1:    $" << tax_amount << endl;
     cout << endl;
-    cout << "Total:    $" << total_cost_rounded << endl;
+    cout << "Total:    $" << total_cost << endl;
 
     
     

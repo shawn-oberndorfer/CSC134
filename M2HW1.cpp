@@ -12,30 +12,38 @@ using namespace std;
     int  programSelect;
     char programRunAgain = 'Y';
 
-int main() {
+    void welcome();
+    void altWelcome();
+    void ending();
+    void bankAccount();
+    void updatedCrates();
+    void pizzaParty();
+    void cheer();
 
-    do{
+int main() {
 
     welcome();
 
-    if(programSelect = 1){
+    do{
+    if(programSelect == 1){
         bankAccount();
         ending();
-    } else if(programSelect = 2){
+    } else if(programSelect == 2){
         updatedCrates();
         ending();
-    } else if(programSelect = 3){
+    } else if(programSelect == 3){
         pizzaParty();
         ending();
-    } else if(programSelect = 4){
+    } else if(programSelect == 4){
         cheer();
         ending();
-    } else {
+    } else if(programSelect > 4){
         altWelcome();
     }
 
 
-    }while (programRunAgain = 'Y');
+    }while (programRunAgain == 'Y');
+    cout << "Goodbye" << endl;
     return 0;
 }
 void altWelcome(){
@@ -155,7 +163,7 @@ void pizzaParty(){
 }
 
 void cheer(){
-string letsGo    = "Let's Go ";
+string letsGo    = "Let's Go";
 string school    = "FTCC"; 
 string team      = "Trojans";
 string cheerOne  = letsGo + " " + school;
