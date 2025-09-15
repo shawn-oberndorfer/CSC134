@@ -26,11 +26,10 @@ int main(){
     total_cost_rounded = round(total_cost * 100.0) / 100.0;
     tax_amount_rounded = round(tax_amount * 100.0) / 100.0;
 
-
+    cout << "Burger(1) $" << meal_price << endl;
+    cout << endl;
     cout << "Subtotal: $" << meal_price << endl;
-    cout << endl;
     cout << "Tax 1:    $" << tax_amount_rounded << endl;
-    cout << endl;
     cout << "Total:    $" << total_cost_rounded << endl;
 
     
