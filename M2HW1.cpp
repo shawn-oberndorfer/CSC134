@@ -154,7 +154,6 @@ void updatedCrates(){
     cout << "The cost to make each crate is $" << crate_production_cost << "." << endl;
     cout << "The sale price for each crate is $" << crate_sale_price << "." << endl;
     cout << "The profit per crate sold would be $" << crate_profit << "." << endl;
-
 }
 
 void pizzaParty(){
