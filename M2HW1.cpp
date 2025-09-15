@@ -171,7 +171,12 @@ void pizzaParty(){
 
     int totalSlices    = pizzasOrdered * slicesPerPizza;
     int leftoverSlices = totalSlices - (3 * peopleAttending);
-
+    
+    if(leftoverSlices >= 0){
+    cout << "If " << peopleAttending << " attend and you order " << pizzasOrdered << " pizzas, there will be " << leftoverSlices << endl;
+    } else if(leftoverSlices < 0){
+        cout << "Not enough pizzas ordered" << endl;
+    }
 }
 
 void cheer(){
