@@ -28,6 +28,12 @@ int main(){
 
     cout << "The area of the first rectangle is " << area1 << " and the area of the second is " << area2 << "." << endl;
 
+    if(area1 > area2) {
+        cout << "The first rectangle is larger." << endl;
+    } else if(area1 < area2) {
+        cout << "The second rectangle is larger." << endl;
+    }
+
     return 0;
 }
 
