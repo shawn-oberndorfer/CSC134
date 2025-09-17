@@ -1,6 +1,8 @@
 /*
-4. If the pizza from question 3 is cut into 8 pieces, what is the area of each piece?
-As usual, upload a zip containing your source code as well as a screenshot of your running program. Your file should be named in the format M1BONUS_Lastname.
+Shawn Oberndorfer
+CSC 134
+M2BONUS
+9/17/2025
 */
 #include <iostream>
 #include <iomanip>
