@@ -43,7 +43,6 @@ int main() {
         altWelcome();
     }
 
-
     }while (programRunAgain == 'Y');
     cout << "Goodbye" << endl;
     return 0;
