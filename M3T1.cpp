@@ -32,6 +32,8 @@ int main(){
         cout << "The first rectangle is larger." << endl;
     } else if(area1 < area2) {
         cout << "The second rectangle is larger." << endl;
+    } else {
+        cout << "The rectangles are equal." << endl;
     }
 
     return 0;
