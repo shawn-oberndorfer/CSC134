@@ -16,13 +16,9 @@ int roll();
 
 int main()
 {
-    //int num = roll();
-    //cout << num << endl;
     int roll1;
     int roll2;
     int point;
-    bool gameEnd;
-    bool rollValid = true;
     
     srand(time(0));
 
@@ -33,22 +29,16 @@ int main()
     cout << "ROLL: " << sum << endl;
 
     if (sum == 7 || sum == 11){
-        cout <<"You win!" << endl;
-        gameEnd = true;
+        cout <<"You Win!" << endl;
     }
     else if(sum == 2 || sum == 3 || sum == 12){
         cout << "You Lose" << endl;
-        gameEnd = true;
     } 
     else if(sum == 4 || sum == 5 || sum == 6 || sum == 8 || sum == 9 || sum == 10){
             point = sum;
             cout << "Your point is: " << point << endl;
-            gameEnd = false;
     }
-    else if(sum > 12 || sum < 2){
-        cout << "Invalid roll number is too high or too low. (Total of both rolls must be 2-12.)" << endl;
-        rollValid = false;
-    }
+
 
     return 0;
 }
