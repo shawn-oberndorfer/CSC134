@@ -3,10 +3,12 @@ using namespace std;
 
 
 int Tavern();
-int Forrest();
-int Mountains();
+int Forest();
+int Mountains1();
+int Mountains2();
 int invalidInput();
 int gameOver();
+int victory();
 
 bool validInput = true;
 bool hasBeenForest = false;
@@ -21,10 +23,10 @@ int main(){
     Tavern();
     do{
     if(locationChoice == 1){
-        Forrest();
+        Forest();
     }
     else if(locationChoice == 2){
-        Mountains();
+        Mountains1();
     }
     else{
         invalidInput();
@@ -32,6 +34,15 @@ int main(){
     }
     }while(validInput == false);
 
+    if(locationChoice == 1 && hasBeenForest == true){
+        Mountains2();
+    }
+    else if(locationChoice == 2 && hasBeenForest == false){
+        Forest();
+    }
+    if(locationChoice == 2 && hasBeenForest == true){
+        Mountains2();
+    }
     return 0;
 }
 int Tavern(){
@@ -152,7 +163,7 @@ int Tavern(){
 }
 
 
-int Forrest(){
+int Forest(){
     cout << "You venture into the forest in search of the bandits." << endl;
     cout << endl;
     cout << endl;
@@ -230,7 +241,11 @@ int Forrest(){
     hasBeenForest = true;
     return 0;
 }
-int Mountains(){
+int Mountains1(){
+
+    return 0;
+}
+int Mountains2(){
 
     return 0;
 }
@@ -242,6 +257,14 @@ int invalidInput(){
 int gameOver(){
     cout << "------------" << endl;
     cout << "| You Lose |" << endl;
+    cout << "------------" << endl;
+    cout << endl;
+    cout << "Thanks for playing." << endl;
+    return 0;
+}
+int victory(){
+    cout << "------------" << endl;
+    cout << "| You Win! |" << endl;
     cout << "------------" << endl;
     cout << endl;
     cout << "Thanks for playing." << endl;
