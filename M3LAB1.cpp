@@ -77,7 +77,7 @@ int Tavern(){
         cin >> playerDialougeChoice;
         if(playerDialougeChoice == 1){
             cout << "Tavernkeep: Well I have been in need of someone to help me with some buisness of my own." << endl;
-            cout << "Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survie withoout the extra resources." << endl;
+            cout << "Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survive without the extra resources." << endl;
             cout << "So what do you say adventure will you help me?" << endl;
             cout << endl;
             cout << "Your Response:" << endl;
@@ -102,7 +102,7 @@ int Tavern(){
         }
         else if(playerDialougeChoice == 2){
             cout << "Tavernkeep: Whoa! Someone is feisty. Even if your not willing to share your buisness mine helping me out with some of mine?" << endl;
-            cout << "Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survie withoout the extra resources." << endl;
+            cout << "Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survive without the extra resources." << endl;
             cout << "So what do you say adventure will you help me?" << endl;
             cout << endl;
             cout << "Your Response:" << endl;
