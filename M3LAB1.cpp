@@ -6,6 +6,7 @@ int Tavern();
 int Forest();
 int Mountains1();
 int Mountains2();
+int BanditHideout();
 int invalidInput();
 int gameOver();
 int victory();
@@ -43,6 +44,7 @@ int main(){
     if(locationChoice == 2 && hasBeenForest == true){
         Mountains2();
     }
+    BanditHideout();
     return 0;
 }
 int Tavern(){
@@ -242,11 +244,67 @@ int Forest(){
     return 0;
 }
 int Mountains1(){
-
+    cout << "You venture into the mountains in search of the bandits." << endl;
+    cout << endl;
+    cout << "As you are searching the area you come across a small cave and venture inside." << endl;
+    cout << "Once inside you find a locked wooden door in the back wall of the cave." << endl;
+    cout << "What Do You Do?" << endl;
+    cout << "1. Search the cave for a key." << endl;
+    cout << "2. Go back to the forest to find the key." << endl;
+    cin >> playerChoice;
+    do{
+    if(playerChoice == 1){
+        cout << "You search the cave but find nothing of interest." << endl;
+        cout << "You decide to go back to the forest to find the key." << endl;
+        validInput = true;
+    }
+    else if(playerChoice == 2){
+        cout << "You decide to go back to the forest to find the key." << endl;
+        validInput = true;
+    }
+    else{
+        cout << "That is not a Valid input. Enter the number that corresponds to your choice." << endl;
+        validInput = false;
+    }
+    }while(validInput == false);
     return 0;
 }
 int Mountains2(){
+    cout << "You venture into the mountains in search of the bandits." << endl;
+    cout << endl;
+    cout << "As you are searching the area you come across a small cave and venture inside." << endl;
+    cout << "Once inside you find a locked wooden door in the back wall of the cave." << endl;
+    cout << "You try the key you found in the forest and it fits perfectly." << endl;
+    cout << "You open the door and find the bandit hideout." << endl;
+    cout << endl;
 
+    return 0;
+}
+int BanditHideout(){
+    cout << "You enter the bandit hideout and find the tavernkeep's shipment." << endl;
+    cout << "As you are gathering the goods you hear footsteps approaching." << endl;
+    cout << "What Do You Do?" << endl;
+    cout << "1. Hide in the shadows." << endl;
+    cout << "2. Confront the bandits." << endl;
+    cin >> playerChoice;
+    do{
+    if(playerChoice == 1){
+        cout << "You hide in the shadows and wait for the bandits to leave." << endl;
+        cout << "After a few minutes the bandits leave and you are able to gather the goods and return to the tavernkeep." << endl;
+        victory();
+        validInput = true;
+    }
+    else if(playerChoice == 2){
+        cout << "You confront the bandits and a fight ensues." << endl;
+        cout << "You are outnumbered and are quickly overwhelmed." << endl;
+        gameOver();
+        validInput = true;
+    }
+    else{
+        cout << "That is not a Valid input. Enter the number that corresponds to your choice." << endl;
+        validInput = false;
+    }
+    }while(validInput == false);
     return 0;
 }
 int invalidInput(){
