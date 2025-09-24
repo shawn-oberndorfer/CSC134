@@ -14,6 +14,7 @@ int victory();
 bool validInput = true;
 bool hasBeenForest = false;
 bool hasKey = false;
+bool isDead = false;
 int playerChoice;
 int playerDialougeChoice;
 int locationChoice;
@@ -35,16 +36,17 @@ int main(){
     }
     }while(validInput == false);
 
-    if(locationChoice == 1 && hasBeenForest == true){
+    if(locationChoice == 1 && hasBeenForest == true && isDead == false){
         Mountains2();
+        BanditHideout();
     }
-    else if(locationChoice == 2 && hasBeenForest == false){
+    else if(locationChoice == 2 && hasBeenForest == false && isDead == false){
         Forest();
     }
-    if(locationChoice == 2 && hasBeenForest == true){
+    if(locationChoice == 2 && hasBeenForest == true && isDead == false){
         Mountains2();
+        BanditHideout();
     }
-    BanditHideout();
     return 0;
 }
 int Tavern(){
@@ -100,6 +102,7 @@ int Tavern(){
             cout << "Your Response:" << endl;
             cout << "1. Yes I will help you." << endl;
             cout << "2. What is in it for me?" << endl;
+            cin >> playerDialougeChoice;
             do{
             if(playerDialougeChoice == 1){
                 cout << "Tavernkeep: Thank you adventurer. The areas they are seen the most would be the Mountains and the Forest." << endl;
@@ -318,6 +321,7 @@ int gameOver(){
     cout << "------------" << endl;
     cout << endl;
     cout << "Thanks for playing." << endl;
+    isDead = true;
     return 0;
 }
 int victory(){
