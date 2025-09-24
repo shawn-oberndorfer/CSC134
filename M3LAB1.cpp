@@ -1,3 +1,9 @@
+/*
+Shawn Oberndorfer
+CSC 134
+M3LAB1
+Text Based Adventure Game
+*/
 #include <iostream>
 using namespace std;
 
