@@ -2,11 +2,15 @@
 using namespace std;
 
 
-int startArea();
-int areaTwo1();
-int areaTwo2();
+int Tavern();
+int Forrest();
+int Mountains();
+int invalidInput();
+int gameOver();
 
 bool validInput = true;
+bool hasBeenForest = false;
+bool hasKey = false;
 int playerChoice;
 int playerDialougeChoice;
 int locationChoice;
@@ -14,21 +18,23 @@ int locationChoice;
 
 int main(){
 
-    startArea();
+    Tavern();
+    do{
     if(locationChoice == 1){
-
+        Forrest();
     }
     else if(locationChoice == 2){
-
+        Mountains();
     }
     else{
-        
+        invalidInput();
+        validInput = false;
     }
-
+    }while(validInput == false);
 
     return 0;
 }
-int startArea(){
+int Tavern(){
     cout << "Your adventure begins in a small tavern right on the edge of Ashbrooke, the bustling capital of the land." << endl;
     cout << "You are lurking in one of the dark corners of the tavern, devising a plan to get inside the city. When suddenly you feel " << endl;
     cout << "the presence of watching eyes on your back. You look around and notice the taverkeep staring at you." << endl;
@@ -123,6 +129,7 @@ int startArea(){
         else if(playerDialougeChoice == 2){
             cout << "Tavernkeep: I can help you get into the city if you can retreive the goods for me." << endl;
             cout << "The areas they are seen the most would be the Mountains and the Forest. I am sure you will find their hideout at one of those spots." << endl;
+            validInput = true;
         }
         else{
             cout << "That is not a Valid input. Enter the number that corresponds to your choice." << endl;
@@ -141,10 +148,102 @@ int startArea(){
     cout << "1. The Forest" << endl;
     cout << "2. The Mountains" << endl;
     cin >> locationChoice;
+    return 0;
 }
-int areaTwo1(){
 
+
+int Forrest(){
+    cout << "You venture into the forest in search of the bandits." << endl;
+    cout << endl;
+    cout << endl;
+    cout << "You stumble upon the wreck of the tavernkeep's shipment and decide to investigate for clues." << endl;
+    cout << endl;
+    cout << "What Do You Do?" << endl;
+    cout << "1. Investigate the bodies." << endl;
+    cout << "2. Investigate the rumbling in the bushes." << endl;
+    cout << "3. Investigate the carriage." << endl;
+    cin >> playerChoice;
+    do{
+    if(playerChoice == 1){
+        cout << "As you approach the bodies of what appear to be a bandit and three of the shipment's guards you notice marks on the ground that lead to a nearby bush." << endl;
+        cout << "What Do You Do" << endl;
+        cout << "1. Investigate the bush." << endl;
+        cout << "2. Investigate the carriage." << endl;
+        do{
+        cin >> playerChoice;
+        if(playerChoice == 1){
+            cout << "As you look into the bush a bandit jumps out at you and attacks you. He slashes at you arm and hits your sleeve ripping your cloak." << endl;
+            cout << "You respond quickly and end the bandit swiftly before he can cause your attire more harm. As you are searching his body you find an old rusty key." << endl;
+            hasKey = true;
+            cout << endl;
+            cout << "With the key in hand and no sight of the bandit hideout you decide to head to the mountains to search." << endl;
+             
+        } 
+        else if(playerChoice == 2){
+            cout << "As you search the inside of the carriage a bandit jumps out of the bushes and cuts you down" << endl;
+            gameOver();
+        }
+        else{
+            cout << "That is not a Valid input. Enter the number that corresponds to your choice." << endl;
+            validInput = false;
+        }
+        }while(validInput == false);
+
+    } 
+    else if(playerChoice == 2){
+        cout << "As you search the bush you find a bandit resting. Beside him lies a rusty key. You grab the key from him and decide to go to the mountains " << endl;
+        cout << "to search for the bandit hideout." << endl;
+    }
+    else if(playerChoice == 3){
+        cout << "You approach the carriage to investigate." << endl;
+        cout << "All you find in the carriage is destroyed barrels and the body of a guard." << endl;
+        cout << "What Do You Do" << endl;
+        cout << "1. Investigate the bush." << endl;
+        cout << "2. Investigate the bodies." << endl;
+        do{
+        cin >> playerChoice;
+        if(playerChoice == 1){
+            cout << "As you look into the bush a bandit jumps out at you and attacks you. He slashes at you arm and hits your sleeve ripping your cloak." << endl;
+            cout << "You respond quickly and end the bandit swiftly before he can cause your attire more harm. As you are searching his body you find an old rusty key." << endl;
+            hasKey = true;
+            cout << endl;
+            cout << "With the key in hand and no sight of the bandit hideout you decide to head to the mountains to search." << endl;
+             
+        } 
+        else if(playerChoice == 2){
+            cout << "As you search around the bodies a bandit jumps out of the bushes and cuts you down" << endl;
+            gameOver();
+        }
+        else{
+            cout << "That is not a Valid input. Enter the number that corresponds to your choice." << endl;
+            validInput = false;
+        }
+        }while(validInput == false);
+
+
+    }
+    else{
+        cout << "That is not a Valid input. Enter the number that corresponds to your choice." << endl;
+        validInput = false;
+    }
+    }while(validInput == false);
+    hasBeenForest = true;
+    return 0;
 }
-int areaTwo2(){
+int Mountains(){
 
+    return 0;
+}
+int invalidInput(){
+    cout << "Enter a valid number that corresponds to your choice." << endl;
+    cin >> locationChoice;
+    return 0;
+}
+int gameOver(){
+    cout << "------------" << endl;
+    cout << "| You Lose |" << endl;
+    cout << "------------" << endl;
+    cout << endl;
+    cout << "Thanks for playing." << endl;
+    return 0;
 }
