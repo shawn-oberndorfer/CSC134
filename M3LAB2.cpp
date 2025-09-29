@@ -8,15 +8,18 @@ M3LAB2
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <cctype>
 using namespace std;
 
 void letterGrader();
 void combat();
+int roll();
 
 
 int main(){
 
-    letterGrader();
+    //letterGrader();
+    combat();
 
 
     return 0;
@@ -73,4 +76,41 @@ void letterGrader(){
 
 void combat(){
 
+    srand(time(0));
+
+    int attackRoll;
+    int attackBonus;
+    int enemyArmor;
+
+
+    cout << "You are fighting a goblin." << endl;
+    attackRoll = roll();
+    cout << "Enter your attack bonus: " << endl;
+    cin >> attackBonus;
+    cout << "Enemy armor class: " << endl;
+    cin >> enemyArmor;
+    cout << attackRoll << " + " << attackBonus << " = " << attackRoll+attackBonus << endl;
+
+        if(attackRoll + attackBonus >= enemyArmor){
+            cout << "Hit!" << endl;
+        }else {
+            cout << "Miss!" << endl;
+        }
+
+    cout << "Again? (Y/N): " << endl;
+    char again;
+    cin >> again;
+    again = toupper(again);
+    if(again == 'Y'){
+        combat();
+    }
+
+}
+
+
+int roll(){
+    const int sides = 20;
+    int myRoll;
+    myRoll = (rand() % sides) + 1;
+    return myRoll;
 }
