@@ -20,8 +20,7 @@ int main(){
 
     //letterGrader();
     combat();
-
-
+    
     return 0;
 }
 
