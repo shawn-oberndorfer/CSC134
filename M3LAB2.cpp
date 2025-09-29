@@ -40,7 +40,11 @@ void letterGrader(){
         cout << "Enter a number grade from 0-100: " << endl;
         cin >> numberGrade;
 
-        if(numberGrade >= A_Grade && numberGrade < 101){
+        if(numberGrade >= 101){
+            letterGrade = "A";
+            cout << "Wow that is an impressive grade!" << endl;
+            isValid = true;
+        }else if(numberGrade >= A_Grade && numberGrade < 101){
             letterGrade = "A";
             isValid = true;
         }else if(numberGrade >= B_Grade && numberGrade < 101){
@@ -59,7 +63,9 @@ void letterGrader(){
             cout << "Not a valid input." << endl;
             isValid = false;
         }
+
     }while(isValid == false);
+    
     cout << "A number grade of " << numberGrade << " is a letter grade: " << letterGrade << "." << endl;
 
 }
