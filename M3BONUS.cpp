@@ -1,6 +1,9 @@
 /*
 Shawn Oberndorfer / Copilot
+CSC 134
+M3BONUS
 10/1/2025
+A small combat game where the player will fight a random enemy.
 */
 #include <iostream>
 #include <cstdlib>
