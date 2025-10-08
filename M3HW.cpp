@@ -111,7 +111,61 @@ void Question2(){
 }
 
 void Question3(){
-cout << "Test 3" << endl;
+    int choice;
+    char playAgain = 'y';
+
+    cout << "=== Welcome to Campus Adventure! ===" << endl;
+
+    while (playAgain == 'y' || playAgain == 'Y') {
+        cout << "It's 8:00 AM and your alarm just went off." << endl;
+        cout << "What do you do?" << endl;
+        cout << "1. Go to class" << endl;
+        cout << "2. Skip class" << endl;
+        cout << "Enter choice: ";
+        cin >> choice;
+        cout << endl;
+
+        if (choice == 2) {
+            cout << "You roll over and go back to sleep..." << endl;
+            cout << "Unfortunately, you miss an important quiz." << endl;
+            cout << "GAME OVER." << endl;
+        }
+        else if (choice == 1) {
+            cout << "You make it to class just in time!" << endl;
+            cout << "The professor starts explaining a tricky concept." << endl;
+            cout << "What do you do?" << endl;
+            cout << "1. Pay attention" << endl;
+            cout << "2. Daydream" << endl;
+            cout << "Enter choice: ";
+            cin >> choice;
+            cout << endl;
+
+            if (choice == 2) {
+                cout << "You stare out the window and miss everything." << endl;
+                cout << "When the pop quiz starts, you're completely lost." << endl;
+                cout << "DEFEAT." << endl;
+            }
+            else if (choice == 1) {
+                cout << "You focus hard, take notes, and actually understand it!" << endl;
+                cout << "When the quiz begins, you ace it with confidence." << endl;
+                cout << "VICTORY!" << endl;
+            }
+            else {
+                cout << "That wasn't a valid option. The moment passes..." << endl;
+                cout << "The quiz begins and you're unprepared. DEFEAT." << endl;
+            }
+        }
+        else {
+            cout << "That wasn't a valid option. You waste the morning." << endl;
+            cout << "By the time you figure it out, class is over." << endl;
+            cout << "GAME OVER." << endl;
+        }
+
+        cout << "Would you like to play again? (y/n): ";
+        cin >> playAgain;
+    }
+
+    cout << "Thanks for playing Campus Adventure!" << endl;
 }
 
 void Question4(){
