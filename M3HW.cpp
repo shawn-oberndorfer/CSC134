@@ -10,7 +10,51 @@ M3HW - Gold
 using namespace std;
 
 void Question1(){
+   string answer;
 
+    cout << "Hey! I'm your friendly C++ chatbot." << endl;
+    cout << "Quick question: Do you like pizza? Type yes or no." << endl;
+
+    cin >> answer;
+
+    if (answer == "yes" || answer == "Yes") {
+        cout << "Excellent choice! You officially have good taste." << endl;
+    }
+    else if (answer == "no" || answer == "No") {
+        cout << "What?! How could you not like pizza. Are you even human?" << endl;
+    }
+    else {
+        cout << "I'll take that as a maybe." << endl;
+    }
+    cout << "Well now that I know a little more about you." << endl;
+    cout << "How has your day been? Type yes or no." << endl;
+
+    cin >> answer;
+
+    if (answer == "yes" || answer == "Yes") {
+        cout << "Glad to hear it. I hope it stays that way." << endl;
+    }
+    else if (answer == "no" || answer == "No") {
+        cout << "I am so sorry to hear that. Don't worry though as there are always brighter days ahead." << endl;
+    }
+    else {
+        cout << "Well either way I hope you are having a good day." << endl;
+    }
+    cout << "Anyways wouldn't you say this conversation has totally been worthy of a 100." << endl;
+    cout << "Type yes or no." << endl;
+
+    cin >> answer;
+
+    if (answer == "yes" || answer == "Yes") {
+        cout << "Phew. Well I am glad that we both can agree on that." << endl;
+    }
+    else if (answer == "no" || answer == "No") {
+        cout << "Oh come on have you not enjoyed my company." << endl;
+    }
+    else {
+        cout << "I'll take that as a yes." << endl;
+    }
+    cout << "It has been nice talking with you. Goodbye." << endl;
 }
 
 void Question2(){
