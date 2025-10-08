@@ -107,28 +107,56 @@ int main(){
     srand(time(0));
 
     int questionChoice;
+    bool runAgain = true;
+    bool isValid  = false;
+    char runAgainChar;
 
-    cout << "1. Question 1: Chat Bot" << endl;
-    cout << "2. Question 2: Receipt Calculator" << endl;
-    cout << "3. Question 3: Choose Your Own Adventure" << endl;
-    cout << "4. Question 4: Math Practice" << endl;
-    cin >> questionChoice;
-    switch(questionChoice){
-        case 1:
-            Question1();
-            break;
-        case 2:
-            Question2();
-            break;
-        case 3:
-            Question3();
-            break;
-        case 4:
-            Question4();
-            break;
-        default:
-            cout << "Invalid Input" << endl;
-    }
+    do{
+        do{
+            cout << "1. Question 1: Chat Bot" << endl;
+            cout << "2. Question 2: Receipt Calculator" << endl;
+            cout << "3. Question 3: Choose Your Own Adventure" << endl;
+            cout << "4. Question 4: Math Practice" << endl;
+            runAgain = false;
+            cin >> questionChoice;
+            switch(questionChoice){
+                case 1:
+                    Question1();
+                    isValid = true;
+                    break;
+                case 2:
+                    Question2();
+                    isValid = true;
+                    break;
+                case 3:
+                    Question3();
+                    isValid = true;
+                    break;
+                case 4:
+                    Question4();
+                    isValid = true;
+                    break;
+                default:
+                    cout << "Invalid Input. Please enter a number 1-4." << endl;
+                    isValid = false;
+            }
+        }while(isValid == false);
+        cout << "Would you like to run another program? (y/n)" << endl;
+        do{
+            cin >> runAgainChar;
+            if(runAgainChar == 'Y' || runAgainChar == 'y'){
+                runAgain = true;
+            }
+            else if(runAgainChar == 'N' || runAgainChar == 'n'){
+                runAgain = false;
+                cout << "Goodbye." << endl;
+            }
+            else{
+                cout << "Invalid Input please enter y/n." << endl;
+                isValid = false;
+            }
+        }while(isValid == false);
+    }while(runAgain == true);
 
 
     return 0;
