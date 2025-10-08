@@ -7,6 +7,7 @@ M3HW - Gold
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <iomanip>
 using namespace std;
 
 void Question1(){
@@ -58,7 +59,55 @@ void Question1(){
 }
 
 void Question2(){
-cout << "Test 2" << endl;
+    const double taxPercent = 0.08;
+
+    int mealMethod;
+    
+    double tipPercent        = 0;
+    double mealPrice         = 0;
+    double taxAmount         = 0;
+    double tipAmount         = 0;
+    double totalCost         = 0;
+    double totalCostRounded  = 0;
+    double taxAmountRounded  = 0;
+
+    bool isValid;
+
+    cout << "What is the price of your meal?" << endl;
+    cin >> mealPrice; 
+    do{
+        cout << "Is your meal" << endl;
+        cout << "1. Dine-In" << endl;
+        cout << "2. Takeout" << endl;
+        cin >> mealMethod;
+
+        if(mealMethod == 1){
+            tipPercent = .15;
+            isValid = true;
+        }
+        else if(mealMethod == 2){
+            tipPercent = 0.0;
+            isValid = true;
+        }
+        else{
+            cout << "Not a valid option. Please enter 1 or 2" << endl;
+            isValid = false;
+        }
+    }while(isValid == false);
+    
+    tipAmount = mealPrice * tipPercent;
+    taxAmount = mealPrice * taxPercent;
+    totalCost = mealPrice + taxAmount + tipAmount;
+
+    cout << setprecision(2) << fixed;
+    cout << "Meal(1)   $" << mealPrice << endl;
+    cout << endl;
+    cout << "Subtotal: $" << mealPrice << endl;
+    cout << "Tax 1:    $" << taxAmount << endl;
+    cout << "Tip:      $" << tipAmount << endl;
+    cout << endl;
+    cout << "Total:    $" << totalCost << endl;
+
 }
 
 void Question3(){
