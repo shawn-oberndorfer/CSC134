@@ -1,3 +1,13 @@
+// === AI ASSISTANCE DOCUMENTATION ===
+// LLM Used: [Copilot GPT-5]
+//
+// PROMPT 1:
+// [I am a C++ Student and you are a bot that changes C++ to twee in Harlow format (input my code)]
+//
+// RESULT: [The AI output a working twee file based from the provided CYOA Game code]
+//
+// ================================
+
 ----------Twee Code MAde With Copilot----------
 
 
@@ -178,4 +188,20 @@ Thanks for playing.
 ------------
 
 Thanks for playing.  
+
 [[Restart->Tavern]]
+
+:: Reflection
+=== REFLECTION ON PROMPT WRITING ===
+
+What made a good prompt?
+[Providing clear and direct instructions is key.]
+
+What made a bad prompt?
+[Dont be whishy washy in what you ask. Dont throw non important or unrelated information into prompts.]
+
+What did I learn about working with AI assistants?
+[That different bots have different uses and that choosing the right one can be key]
+
+If I did this again, I would...
+[Do everything the same.]
