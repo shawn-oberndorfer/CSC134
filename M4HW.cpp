@@ -9,12 +9,14 @@ using namespace std;
 
 int main(){
     int tableMultiplier = 0;
+    int tableMin = 1;
+    int tableMax = 12;
 
-    while(tableMultiplier <= 0 || tableMultiplier > 12){
-    cout << "What times table (1-12) would you like?" << endl;
+    while(tableMultiplier < tableMin || tableMultiplier > tableMax){
+    cout << "What times table (" << tableMin << "-" << tableMax << ") would you like?" << endl;
     cin >> tableMultiplier;
-    if(tableMultiplier <= 0 || tableMultiplier > 12){
-        cout << "Not a currently valid table. Please enter a number 1-12." << endl;
+    if(tableMultiplier <= tableMin || tableMultiplier > tableMax){
+        cout << "Not a currently valid table. Please enter a number " << tableMin << "-" << tableMax << "." << endl;
     }
     }
     cout << "---- " << tableMultiplier << " Times Table ----" << endl;
