@@ -1,0 +1,181 @@
+----------Twee Code MAde With Copilot----------
+
+
+:: StoryData
+{
+    "ifid": "YOUR-STORY-ID",
+    "format": "Harlowe",
+    "format-version": "3.3.5",
+    "start": "Tavern"
+}
+
+:: Tavern
+Your adventure begins in a small tavern right on the edge of Ashbrooke, the bustling capital of the land.  
+You are lurking in one of the dark corners of the tavern, devising a plan to get inside the city.  
+Suddenly, you feel the presence of watching eyes on your back. You look around and notice the tavernkeep staring at you.  
+
+What do you do?  
+* [[Approach the man->ApproachTavernkeep]]  
+* [[Stay where you are->StaySeated]]
+
+:: ApproachTavernkeep
+You get up slowly and approach the tavernkeep.  
+
+''Tavernkeep:'' Why hello adventurer, what brings you to my lovely tavern?  
+
+Your Response:  
+* [[I have come to town on business and stopped to rest->BusinessResponse]]  
+* [[That is none of your business->RudeResponse]]
+
+:: BusinessResponse
+''Tavernkeep:'' Well I have been in need of someone to help me with some business of my own.  
+Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survive without the extra resources.  
+
+So what do you say adventurer, will you help me?  
+
+* [[Yes, I will help you->QuestAccepted]]  
+* [[What is in it for me?->QuestReward]]
+
+:: RudeResponse
+''Tavernkeep:'' Whoa! Someone is feisty. Even if you're not willing to share your business, mind helping me out with some of mine?  
+Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survive without the extra resources.  
+
+So what do you say adventurer, will you help me?  
+
+* [[Yes, I will help you->QuestAccepted]]  
+* [[What is in it for me?->QuestReward]]
+
+:: StaySeated
+You stay seated where you are.  
+After a few minutes the tavernkeep walks over to your table and sits down.  
+
+''Tavernkeep:'' Hello adventurer. Do you think you would have some time to assist me with some business of mine?  
+Two days ago a bandit robbed a transport of mine that had ale and food in it. My tavern can't survive without the extra resources.  
+
+So what do you say adventurer, will you help me?  
+
+* [[Yes, I will help you->QuestAccepted]]  
+* [[What is in it for me?->QuestReward]]
+
+:: QuestAccepted
+''Tavernkeep:'' Thank you adventurer. The areas they are seen the most would be the Mountains and the Forest.  
+I am sure you will find their hideout at one of those spots. And if you can bring my goods back I can even help you get into the city.  
+
+(set: $questAccepted to true)  
+
+Where do you decide to explore first?  
+* [[The Forest->Forest]]  
+* [[The Mountains->Mountains1]]
+
+:: QuestReward
+''Tavernkeep:'' I can help you get into the city if you can retrieve the goods for me.  
+The areas they are seen the most would be the Mountains and the Forest. I am sure you will find their hideout at one of those spots.  
+
+(set: $questAccepted to true)  
+
+Where do you decide to explore first?  
+* [[The Forest->Forest]]  
+* [[The Mountains->Mountains1]]
+
+:: Forest
+You venture into the forest in search of the bandits.  
+
+You stumble upon the wreck of the tavernkeep's shipment and decide to investigate for clues.  
+
+What do you do?  
+* [[Investigate the bodies->ForestBodies]]  
+* [[Investigate the rumbling in the bushes->ForestBush]]  
+* [[Investigate the carriage->ForestCarriage]]
+
+:: ForestBodies
+As you approach the bodies of what appear to be a bandit and three of the shipment's guards you notice marks on the ground that lead to a nearby bush.  
+
+What do you do?  
+* [[Investigate the bush->ForestBushAttack]]  
+* [[Investigate the carriage->ForestCarriageDeath]]
+
+:: ForestBushAttack
+As you look into the bush a bandit jumps out at you and attacks you. He slashes at your arm and rips your cloak.  
+You respond quickly and end the bandit before he can cause more harm. Searching his body, you find an old rusty key.  
+
+(set: $hasKey to true)  
+(set: $hasBeenForest to true)  
+
+With the key in hand and no sight of the bandit hideout, you decide to head to the mountains.  
+[[Go to the Mountains->Mountains2]]
+
+:: ForestCarriageDeath
+As you search the inside of the carriage a bandit jumps out of the bushes and cuts you down.  
+[[Game Over->GameOver]]
+
+:: ForestBush
+As you search the bush you find a bandit resting. Beside him lies a rusty key. You grab the key and decide to go to the mountains to search for the bandit hideout.  
+
+(set: $hasKey to true)  
+(set: $hasBeenForest to true)  
+
+[[Go to the Mountains->Mountains2]]
+
+:: ForestCarriage
+You approach the carriage to investigate.  
+All you find in the carriage is destroyed barrels and the body of a guard.  
+
+What do you do?  
+* [[Investigate the bush->ForestBushAttack]]  
+* [[Investigate the bodies->ForestBodiesDeath]]
+
+:: ForestBodiesDeath
+As you search around the bodies a bandit jumps out of the bushes and cuts you down.  
+[[Game Over->GameOver]]
+
+:: Mountains1
+You venture into the mountains in search of the bandits.  
+
+As you are searching the area you come across a small cave and venture inside.  
+Once inside you find a locked wooden door in the back wall of the cave.  
+
+What do you do?  
+* [[Search the cave for a key->Mountains1Search]]  
+* [[Go back to the forest to find the key->Forest]]
+
+:: Mountains1Search
+You search the cave but find nothing of interest.  
+You decide to go back to the forest to find the key.  
+[[Return to the Forest->Forest]]
+
+:: Mountains2
+You venture into the mountains in search of the bandits.  
+
+As you are searching the area you come across a small cave and venture inside.  
+Once inside you find a locked wooden door in the back wall of the cave.  
+
+You try the key you found in the forest and it fits perfectly.  
+You open the door and find the bandit hideout.  
+
+[[Enter the Bandit Hideout->BanditHideout]]
+
+:: BanditHideout
+You enter the bandit hideout and find the tavernkeep's shipment.  
+As you are gathering the goods you hear footsteps approaching.  
+
+What do you do?  
+* [[Hide in the shadows->Victory]]  
+* [[Confront the bandits->GameOver]]
+
+:: GameOver
+------------
+| You Lose |
+------------
+
+Thanks for playing.  
+(set: $isDead to true)  
+
+[[Restart->Tavern]]
+
+:: Victory
+------------
+| You Win! |
+------------
+
+Thanks for playing.  
+[[Restart->Tavern]]
