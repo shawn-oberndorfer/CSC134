@@ -8,17 +8,17 @@ M4HW - Gold
 using namespace std;
 
 int main(){
-    int tableMultiplier = 0;
+    int tableMultiplier;
     int tableMin = 1;
     int tableMax = 12;
 
-    while(tableMultiplier < tableMin || tableMultiplier > tableMax){
-    cout << "What times table (" << tableMin << "-" << tableMax << ") would you like?" << endl;
-    cin >> tableMultiplier;
-    if(tableMultiplier <= tableMin || tableMultiplier > tableMax){
-        cout << "Not a currently valid table. Please enter a number " << tableMin << "-" << tableMax << "." << endl;
-    }
-    }
+    do{
+        cout << "What times table (" << tableMin << "-" << tableMax << ") would you like?" << endl;
+        cin >> tableMultiplier;
+        if(tableMultiplier <= tableMin || tableMultiplier > tableMax){
+            cout << "Not a currently valid table. Please enter a number " << tableMin << "-" << tableMax << "." << endl;
+        }
+    }while(tableMultiplier < tableMin || tableMultiplier > tableMax);
     cout << "---- " << tableMultiplier << " Times Table ----" << endl;
     cout << endl;
     int i = 1;
