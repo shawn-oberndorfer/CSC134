@@ -16,9 +16,7 @@ int main()
 {
 	double length,    // The rectangle's length
            width,     // The rectangle's width
-           area,
-           size = 10;      // The rectangle's area
-
+           area;        // The rectangle's area
     // Get the rectangle's length.
     length = getLength();
     
