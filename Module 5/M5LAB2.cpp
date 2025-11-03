@@ -9,48 +9,52 @@ using namespace std;
 
 int getLength();
 int getWidth();
-int getArea(int, int);
-void displayData(int, int, int);
+int getArea(double, double);
+void displayData(double, double, double);
 
 int main()
 {
 	double length,    // The rectangle's length
            width,     // The rectangle's width
-           area;      // The rectangle's area
-          
-   // Get the rectangle's length.
-   length = getLength();
-   
-   // Get the rectangle's width.
-   width = getWidth();
-   
-   // Get the rectangle's area.
-   area = getArea(length, width);
-   
-   // Display the rectangle's data.
-   displayData(length, width, area);
-          
-   return 0;
+           area,
+           size = 10;      // The rectangle's area
+
+    // Get the rectangle's length.
+    length = getLength();
+    
+    // Get the rectangle's width.
+    width = getWidth();
+    
+    // Get the rectangle's area.
+    area = getArea(length, width);
+    
+    // Display the rectangle's data.
+    displayData(length, width, area);
+            
+    return 0;
 }
 
 int getLength(){
-    int length; 
+    double length; 
     cout << "Enter the length of your rectangle.\n";
     cin >> length;
     return length;
 }
+
 int getWidth(){
-    int width; 
+    double width; 
     cout << "Enter the width of your rectangle.\n";
     cin >> width;
     return width;
 }
-int getArea(int length, int width){
-    int area;
+
+int getArea(double length, double width){
+    double area;
     area = length * width;
     return area;
 }
-void displayData(int length, int width, int area){
+
+void displayData(double length, double width, double area){
     cout << "If Length: " << length;
     cout << "\nAnd Width: " << width;
     cout << "\nThen Area is: " << area << endl;
