@@ -3,9 +3,11 @@ CSC 134
 M5HW - Gold
 Shawn Oberndorfer
 Started 11/3/2025
-Last Worked on 11/3/2025
+Last Worked on 11/4/2025
 */
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 
 using namespace std;
 void QuestionSelect(bool&);
@@ -18,33 +20,12 @@ void Goodbye();
 
 int main(){
     bool runAgain = true;
-    bool isValid = false;
-    int runAgainChoice;
     
     while(runAgain == true){
     
         QuestionSelect(runAgain);
-    
-        isValid == false;
-        while(isValid == false && runAgain == true){
-            cout << "Would you like to run another program?\n1. Yes\n2. No\n";
-            cin >> runAgainChoice;
-            switch(runAgainChoice){
-                case 1:
-                    runAgain = true;
-                    isValid = true;
-                    break;
-                case 2:
-                    runAgain = false;
-                    isValid = true;
-                    break;
-                default:
-                    cout << "Invalid answer. Please enter \"1\" or \"2\".\n";
-                    isValid = false;
-
-            }
-        }
     }
+
 
     Goodbye();
 
@@ -88,13 +69,13 @@ void QuestionSelect(bool& runAgain){
                 Question5();
                 isValid = true;
                 break;
-            case 8:
+            case 7:
                 isValid = true;
                 runAgain = false;
                 break;
             default:
                 isValid = false;
-                cout << "PLease enter a valid menu option. (1-8)\n";
+                cout << "PLease enter a valid menu option. (1-7)\n";
                 break;
         }
     }
@@ -130,16 +111,16 @@ void Question1(){
 void Question2(){
     double height = 0, length = 0, width = 0, volume;
 
-    cout << "-----Hypperrectangle Calculator-----\n";
-    while(height < 1){
+    cout << "-----Block Calculator-----\n";
+    while(height < 0){
         cout << "What is the height of your block? (Must be a value greter than 0)\n";
         cin >> height;
     }
-    while(length < 1){
+    while(length < 0){
         cout << "What is the length of your block? (Must be a value greter than 0)\n";
         cin >> length;
     }
-    while(width < 1){
+    while(width < 0){
         cout << "What is the width of your block? (Must be a value greter than 0)\n";
         cin >> width;
     }
@@ -154,10 +135,9 @@ void Question3(){
     string romanNumeral;
     bool isValid = false;
     cout << "-----Roman Numeral Converter-----\n\n";
-
-    cout << "Enter a number (1-10) to convert to a roman numeral.\n";
-    cin >> numericValue;
     while(isValid == false){
+        cout << "Enter a number (1-10) to convert to a roman numeral.\n";
+        cin >> numericValue;
         switch(numericValue){
             case 1:
                 romanNumeral = "I";
@@ -209,7 +189,64 @@ void Question3(){
 }
 
 void Question4(){
+    int shapeChoice;
+    double radius, length, width, base, height, area;
+    bool isValid = false;
 
+    cout << "-----Geometry Calculator-----\n";
+    while(isValid == false){
+        cout << "1. Calculate the area of a Circle \n2. Calculate the area of a Rectangle \n3. Calculate the area of a Triangle \n4. Quit\n";
+        cout << "Enter your choice (1-4)";
+        cin >> shapeChoice;
+        switch(shapeChoice){
+            case 1:
+                while(radius < 0){
+                    cout << "What is the radius of your circle? (Must be a value greter than 0)\n";
+                    cin >> radius;
+                }
+                area = pow(radius, 2) * M_PI;
+                cout << setprecision(4) << fixed;
+                cout << "The circle has an area of " << area << ".\n";
+                isValid = true;
+                break;
+            case 2:
+                while(width < 0){
+                    cout << "What is the width of your rectangle? (Must be a value greter than 0)\n";
+                    cin >> height;
+                }
+                while(length < 0){
+                    cout << "What is the length of your rectangle? (Must be a value greter than 0)\n";
+                    cin >> length;
+                }
+                area = length * width;
+                cout << "The rectangle has an area of " << area << ".\n";
+                isValid = true;
+                break;
+            case 3:
+                while(height < 0){
+                    cout << "What is the height of your triangle? (Must be a value greter than 0)\n";
+                    cin >> height;
+                }
+                while(base < 0){
+                    cout << "What is the length of the base of your triangle? (Must be a value greter than 0)\n";
+                    cin >> base;
+                }
+                area = .5 * height * base;
+                cout << "The trianghle has an area of " << area << ".\n";
+                isValid = true;
+                break;
+            case 4:
+                isValid = true;
+                break;
+            default:
+                isValid = false;
+                cout << "PLease enter a valid menu option. (1-4)\n";
+                break;
+                
+
+
+        }
+    }
 }
 
 void Question5(){
