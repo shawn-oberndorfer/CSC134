@@ -14,7 +14,6 @@ void Question2();
 void Question3();
 void Question4();
 void Question5();
-void Question6();
 void Goodbye();
 
 int main(){
@@ -57,7 +56,7 @@ void QuestionSelect(bool& runAgain){
     bool isValid = false;
 
     while(isValid == false){
-        cout << "What question would you like to run? \n1. Question 1 \n2. Question 2 \n3. Question 3 \n4. Question 4 \n5. Question 5 \n6. Question 6 \n7. Run all in order.\n8. Exit Program\n";
+        cout << "What question would you like to run? \n1. Question 1 \n2. Question 2 \n3. Question 3 \n4. Question 4 \n5. Question 5 \n6. Run all in order.\n7. Exit Program\n";
         cin >> questionChoice;
 
         switch(questionChoice){
@@ -82,16 +81,11 @@ void QuestionSelect(bool& runAgain){
                 isValid = true;
                 break;
             case 6:
-                Question6();
-                isValid = true;
-                break;
-            case 7:
                 Question1();
                 Question2();
                 Question3();
                 Question4();
                 Question5();
-                Question6();
                 isValid = true;
                 break;
             case 8:
@@ -213,13 +207,12 @@ void Question3(){
     cout << numericValue << " in roman numerals is " << romanNumeral << ".\n\n";
 
 }
+
 void Question4(){
 
 }
-void Question5(){
 
-}
-void Question6(){
+void Question5(){
 
 }
 
