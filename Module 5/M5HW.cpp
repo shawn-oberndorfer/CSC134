@@ -156,6 +156,61 @@ void Question2(){
 }
 
 void Question3(){
+    int numericValue;
+    string romanNumeral;
+    bool isValid = false;
+    cout << "-----Roman Numeral Converter-----\n\n";
+
+    cout << "Enter a number (1-10) to convert to a roman numeral.\n";
+    cin >> numericValue;
+    while(isValid == false){
+        switch(numericValue){
+            case 1:
+                romanNumeral = "I";
+                isValid = true;
+                break;
+            case 2:
+                romanNumeral = "II";
+                isValid = true;
+                break;
+            case 3:
+                romanNumeral = "III";
+                isValid = true;
+                break;
+            case 4:
+                romanNumeral = "IV";
+                isValid = true;
+                break;
+            case 5:
+                romanNumeral = "V";
+                isValid = true;
+                break;
+            case 6:
+                romanNumeral = "VI";
+                isValid = true;
+                break;
+            case 7:
+                romanNumeral = "VII";
+                isValid = true;
+                break;
+            case 8:
+                romanNumeral = "VIII";
+                isValid = true;
+                break;
+            case 9:
+                romanNumeral = "IX";
+                isValid = true;
+                break;
+            case 10:
+                romanNumeral = "X";
+                isValid = true;
+                break;
+            default:
+                cout << "Please enter a valid integer.\n";
+                isValid = false; 
+        }
+    }
+    cout << numericValue << " in roman numerals is " << romanNumeral << ".\n\n";
 
 }
 void Question4(){
