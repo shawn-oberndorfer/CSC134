@@ -213,7 +213,16 @@ void Question4(){
 }
 
 void Question5(){
+    double hoursTraveled, milesPerHour, distanceTraveled;
 
+    cout <<"-----Distance Travelled Calculator-----\n";
+    cout << "What was the speed of the car in mph?\n";
+    cin >> milesPerHour;
+    cout << "How long did the car travel for in hours?\n";
+    cin >> hoursTraveled;
+
+    distanceTraveled = milesPerHour * hoursTraveled;
+    cout << "If the car was travelling at " << milesPerHour << " mph for " << hoursTraveled << " hours. The car will have gone " << distanceTraveled << " miles.\n\n"; 
 }
 
 void Goodbye(){
