@@ -2,6 +2,7 @@
 Shawn Oberndorfer
 CSC-134
 M5LAB1
+11/5/25
 CYOA Program expanded.
 */
 #include <iostream>
@@ -9,7 +10,9 @@ CYOA Program expanded.
 using namespace std;
 
 int GetChoice(int);
-int AdventureStart();
+void showChoices(string choice1, string choice2, string choice3);
+void AdventureStart();
+void TowerInterior();
 void YouLose();
 
 
@@ -17,30 +20,7 @@ int main(){
     int storyChoice;
     bool hasLost = false;
 
-    storyChoice = AdventureStart();
-
-    cout << storyChoice;
-
-    switch(storyChoice){
-        case 1:
-            cout << "\nYou walk up to the front of the tower and push the doors open revealing the magnificent interior to you.";
-            break;
-        case 2:
-            cout << "\nYou see a ladder leading to a high up window around the bock of the tower.\n As you climb the ladder up to the window a gust of wind knocks you off and land on your arm, breaking it.";
-            cout << "\nYou head back home and hope that people don't ask how you injured yourself\n\n";
-            hasLost = true;
-            break;
-        case 3:
-            cout << "\nYou go home to be shamed by your fellow adventurers for your cowardice.\n";
-            hasLost = true;
-            break;
-    }
-    if(hasLost == false){
-        //story continues here
-    } 
-    else{
-        YouLose();
-    }
+    AdventureStart();
 
     return 0;
 }
@@ -57,34 +37,58 @@ int GetChoice(int maxChoice){
     return choice;
 }
 
-int AdventureStart(){
+void showChoices(string choice1, string choice2, string choice3) {
+    // A quick menu. If a choice is empty ("") it's not shown
+    // always at least one choice
+    // Example: showChoices("run","fight","hide");
+    cout << "---- MAKE YOUR CHOICE ----" << endl;
+    int num = 1;
+    cout << num << ". " << choice1 << endl;
+    num++;
+
+    if (choice2 != "") {
+        cout << num << ". " << choice2 << endl;
+        num++;
+    }
+
+    if (choice3 != "") {
+        cout << num << ". " << choice3 << endl;
+        num++;
+    }
+
+}
+
+void AdventureStart(){
     int choice;
     int maxChoice;
     int storyChoice;
 
-    cout << "Story Text\n";
-    cout << "1: Enter the tower through the front door.\n2: Search around the tower for another entrance\n3: Go home. Exploring this tower would be too much work.\n";
+    cout << R"(The kingdom's plea echoes in your mind: a relic of untold power lies hidden in the long forgotten tower.
+    Few who enter return, and those who do speak only in riddles. With staff in hand and wards upon your robes, you set forth into the night.
+    The tower awaits.)" << endl;
+    showChoices("Enter the tower through the front door.",
+        "Search around the tower for another entrance",
+        "Go home. Exploring this tower would be too much work.");
     maxChoice = 3;
     choice = GetChoice(maxChoice);
-    switch(choice){
-        case 1:
-            cout << "Outcome 1\n";
-            storyChoice = 1;
-            break;
-        case 2:
-            cout << "Outcome 2\n";
-            storyChoice = 2;
-            break;
-        case 3:
-            cout << "Outcome 3\n";
-            storyChoice = 3;
-            break;
-        default:
-            cout << "Hey! You shouldn't be able to see this text.\n";
+    if(choice == 1){
+        cout << "\nYou walk up to the front of the tower and push the doors open revealing the magnificent interior to you.";
+        TowerInterior();
+    } else if(choice == 2){
+        cout << R"(        You see a ladder leading to a high up window around the back of the tower.
+        As you climb the ladder up to the window a gust of wind knocks you off and land on your arm, breaking it.
+        You head back home and hope that people don't ask how you injured yourself)" << endl << endl;
+        YouLose();
+    } else if(choice == 3){
+        cout << "\nYou go home to be shamed by your fellow adventurers for your cowardice.\n";
+        YouLose();
     }
+    
 
+}
 
-    return storyChoice;
+void TowerInterior(){
+
 }
 
 void YouLose(){
