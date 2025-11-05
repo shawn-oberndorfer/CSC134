@@ -3,7 +3,7 @@ CSC 134
 M5HW - Gold
 Shawn Oberndorfer
 Started 11/3/2025
-Last Worked on 11/4/2025
+Last Worked on 11/5/2025
 */
 #include <iostream>
 #include <cmath>
@@ -37,7 +37,7 @@ void QuestionSelect(bool& runAgain){
     bool isValid = false;
 
     while(isValid == false){
-        cout << "What question would you like to run? \n1. Question 1 \n2. Question 2 \n3. Question 3 \n4. Question 4 \n5. Question 5 \n6. Run all in order.\n7. Exit Program\n";
+        cout << "What question would you like to run? \n1. Question 1 \n2. Question 2 \n3. Question 3 \n4. Question 4 \n5. Question 5 \n6. Exit Program\n";
         cin >> questionChoice;
 
         switch(questionChoice){
@@ -62,20 +62,12 @@ void QuestionSelect(bool& runAgain){
                 isValid = true;
                 break;
             case 6:
-                Question1();
-                Question2();
-                Question3();
-                Question4();
-                Question5();
-                isValid = true;
-                break;
-            case 7:
                 isValid = true;
                 runAgain = false;
                 break;
             default:
                 isValid = false;
-                cout << "PLease enter a valid menu option. (1-7)\n";
+                cout << "PLease enter a valid menu option. (1-6)\n";
                 break;
         }
     }
