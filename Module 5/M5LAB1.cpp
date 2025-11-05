@@ -13,6 +13,8 @@ int GetChoice(int);
 void showChoices(string choice1, string choice2, string choice3);
 void AdventureStart();
 void TowerInterior();
+void TowerUpper();
+void TowerLower();
 void YouLose();
 
 
@@ -72,7 +74,7 @@ void AdventureStart(){
     maxChoice = 3;
     choice = GetChoice(maxChoice);
     if(choice == 1){
-        cout << "\nYou walk up to the front of the tower and push the doors open revealing the magnificent interior to you.";
+        cout << "\nYou walk up to the front of the tower and push the doors open revealing the magnificent interior to you." << endl;
         TowerInterior();
     } else if(choice == 2){
         cout << R"(        You see a ladder leading to a high up window around the back of the tower.
@@ -88,6 +90,31 @@ void AdventureStart(){
 }
 
 void TowerInterior(){
+    int choice;
+    cout << R"(As you enter the tower you can see the murals of glorius battles etched into the dust covered walls.
+    From your surroundings you can tell that this was once a regal structure of great significance to those who came before you.
+    As you venture further you come across a grand spiral staircase.)" << endl;
+
+    showChoices("Venture up the stairs to the upper stories",
+    "Head down the stairs into the dark cellars below","");
+    int max = 2;
+    choice = GetChoice(max);
+
+    if(choice == 1){
+        cout << "Some Text";
+        TowerUpper();
+    } 
+    else if(choice == 2){
+        cout << "Some Text";
+        TowerLower();
+    }
+}
+
+void TowerUpper(){
+
+}
+
+void TowerLower(){
 
 }
 
