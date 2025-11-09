@@ -1,4 +1,8 @@
-#include <iostream>
+/*
+CSC 134
+M5T2
+Shawn Oberndorfer
+*/#include <iostream>
 using namespace std;
 
 int square(int);
