@@ -1,3 +1,9 @@
+/*
+CSC 134
+M6T1
+Shawn Oberndorfer
+Date Started 11/10/2025
+*/
 #include <iostream>
 using namespace std;
 
@@ -8,7 +14,7 @@ void part2();
 int main(){
 
 
-    part1();
+    part2();
 
     return 0;
 }
@@ -36,11 +42,18 @@ void part2(){
     int carsPast[maxDays];
 
     for(int i = 1; i <= maxDays; i++){
-        cout << "\nHow many cars past on day " << i << ": ";
+        cout << "How many cars past on day " << i << ": ";
         cin >> carsPast[i-1];
         totalCars += carsPast[i-1];
+        cout  << endl;
     }
 
+    averageCars = totalCars / maxDays;
     
+    for(int j = 1; j <= maxDays; j++){
+        cout << "On day " << j << ": " << carsPast[j-1] << " cars past" << endl;
+    }
+    cout << "\nTotal Cars: " << totalCars << "\nAverage Cars Per Day: " << averageCars << endl;;
+
 
 }
