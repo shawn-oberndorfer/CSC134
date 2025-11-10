@@ -40,13 +40,8 @@ void part2(){
     int averageCars;
 
     int carsPast[maxDays];
-    string daysOfWeek[maxDays];
+    string daysOfWeek[maxDays] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 
-    daysOfWeek[0] = "Monday";
-    daysOfWeek[1] = "Tuesday";
-    daysOfWeek[2] = "Wednesday";
-    daysOfWeek[3] = "Thursday";
-    daysOfWeek[4] = "Friday";
 
     for(int i = 1; i <= maxDays; i++){
         cout << "How many cars past on " << daysOfWeek[i-1] << ": ";
