@@ -1,3 +1,8 @@
+/*
+Shawn Oberndorfer
+CSC 134
+M6LAB1
+*/
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
