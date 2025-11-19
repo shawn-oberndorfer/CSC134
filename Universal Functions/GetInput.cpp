@@ -1,3 +1,8 @@
+/*
+Shawn Oberndorfer
+11/19/2025
+GetChoice function with letter and number validation.
+*/
 #include <iostream>
 #include <limits>
 
