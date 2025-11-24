@@ -1,3 +1,8 @@
+/*
+Shawn Oberndorfer
+CSC 134 - M6LAB2
+11/24/2025
+*/
 #include <iostream>
 #include <string>
 #include <vector>
