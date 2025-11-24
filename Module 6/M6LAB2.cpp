@@ -25,27 +25,38 @@ enum Room {
     KITCHEN = 2,
     GARDEN = 3,
     BASEMENT = 4,
-    NUM_ROOMS = 5
+    STUDY = 5,
+    OBSERVATORY = 6,
+    VAULT = 7,
+    NUM_ROOMS = 8
 };
 
+
 int main() {
+     bool hasKey = false;
     // Room names array
     string roomNames[NUM_ROOMS] = {
         "Entrance Hall",
         "Library",
         "Kitchen",
         "Garden",
-        "Basement"
+        "Basement",
+        "Study",
+        "Observatory",
+        "Vault"
     };
-    
-    // Room descriptions array
+
     string roomDescriptions[NUM_ROOMS] = {
         "A grand entrance hall with a dusty chandelier hanging above.",
         "Walls lined with ancient books. The air smells of old paper.",
         "A spacious kitchen with an old stove and wooden counter.",
         "An overgrown garden with stone pathways and a small fountain.",
-        "A dark, damp basement with cobwebs in the corners."
+        "A dark, damp basement with cobwebs in the corners.",
+        "A quiet study with a large oak desk and shelves of journals.",
+        "A circular observatory with a cracked telescope pointing skyward.",
+        "You step into the vault, its shelves lined with ancient treasures glinting faintly in the dim light and discover the secrets of this house."
     };
+
     
     // Adjacency list using a 2D array
     // connections[from_room][direction] = to_room or -1 if no connection
@@ -67,7 +78,7 @@ int main() {
     
     // Library connections
     connections[LIBRARY][NORTH] = -1;               // No connection north
-    connections[LIBRARY][EAST] = -1;                // No connection east
+    connections[LIBRARY][EAST] = STUDY;                // No connection east
     connections[LIBRARY][SOUTH] = ENTRANCE_HALL;    // Library -> South -> Entrance Hall
     connections[LIBRARY][WEST] = -1;                // No connection west
     
@@ -88,7 +99,25 @@ int main() {
     connections[BASEMENT][EAST] = -1;               // No connection east
     connections[BASEMENT][SOUTH] = -1;              // No connection south
     connections[BASEMENT][WEST] = -1;               // No connection west
-    
+
+    // Study connections
+    connections[STUDY][NORTH] = OBSERVATORY;
+    connections[STUDY][EAST] = -1;
+    connections[STUDY][SOUTH] = -1;
+    connections[STUDY][WEST] = LIBRARY;
+
+    // Observatory connections
+    connections[OBSERVATORY][NORTH] = -1;
+    connections[OBSERVATORY][EAST] = -1;    
+    connections[OBSERVATORY][SOUTH] = STUDY;
+    connections[OBSERVATORY][WEST] = VAULT;
+
+    // Vault connections (locked)
+    connections[VAULT][NORTH] = -1;
+    connections[VAULT][EAST] = OBSERVATORY;
+    connections[VAULT][SOUTH] = -1;
+    connections[VAULT][WEST] = -1;
+
     // Game state
     int currentRoom = ENTRANCE_HALL; // Start in the Entrance Hall
     bool gameRunning = true;
@@ -98,6 +127,23 @@ int main() {
         // Display current room information
         cout << "\nYou are in the " << roomNames[currentRoom] << endl;
         cout << roomDescriptions[currentRoom] << endl;
+
+        if (currentRoom == BASEMENT) {
+            cout << "You notice a rusty key on the floor. Type 'take' to pick it up." << endl;
+            string command;
+            cout << "\nWhat would you like to do? ";
+            cin >> command;
+            if (command == "take" || command == "take key") {
+                if (currentRoom == BASEMENT) {
+                    hasKey = true;
+                    cout << "You picked up the rusty key." << endl;
+                } else {
+                    cout << "You leave the key where it is." << endl;
+                }
+            }
+        }
+
+
         
         // Show available exits
         cout << "Exits: ";
@@ -138,18 +184,24 @@ int main() {
                 cout << "You can't go that way." << endl;
             }
         } else if (command == "west" || command == "w") {
-            if (connections[currentRoom][WEST] != -1) {
-                currentRoom = connections[currentRoom][WEST];
+        int nextRoom = connections[currentRoom][WEST];
+        if (nextRoom != -1) {
+            if (nextRoom == VAULT && !hasKey) {
+                cout << "The vault door is locked. You need a key." << endl;
+                // Do NOT change currentRoom
             } else {
-                cout << "You can't go that way." << endl;
+                currentRoom = nextRoom;
             }
-        } else if (command == "quit" || command == "q") {
+        } else {
+        cout << "You can't go that way." << endl;
+    }
+} else if (command == "quit" || command == "q") {
             gameRunning = false;
         } else {
             cout << "I don't understand that command." << endl;
         }
     }
-    
     cout << "Thanks for playing!" << endl;
     return 0;
+
 }
