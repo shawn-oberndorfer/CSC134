@@ -32,7 +32,7 @@ class Restaurant {
   
 
     void printInfo() {
-        cout << "Restaurant: " << name << ", \nRating: " << rating << " stars" << endl;
+        cout << "Restaurant: " << name << ", \nRating: " << rating << " stars\n" << endl;
     }
 };
 
@@ -40,11 +40,12 @@ int main() {
     cout << "M7T1 - Restaurant Reviews" << endl;
 
 
-
+    Restaurant breakfast = Restaurant("Pancakes and Waffles", 3.9);
     Restaurant lunch = Restaurant("Zaxbys", 4.0);
     Restaurant dinner = Restaurant("Olive Garden", 4.5);
 
 
+    breakfast.printInfo();
     lunch.printInfo();
     dinner.printInfo();
 
