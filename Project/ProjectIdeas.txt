@@ -1,0 +1,9 @@
+Make several enemy types and randomly throw them at the player.
+Let player choose between a few different classes.
+Rounds 1-3. 1 Enemy 
+Rounds 4, 6-8. 2 Enemies
+Rounds 9, 11-14. 3 Enemies
+Round 5, 10, 15. Bosses
+Make opptions after random rounds to fight harder enemy for loot or rest.
+Destiny 2 Style enemies and classes.
+Potentially basic abilities.
