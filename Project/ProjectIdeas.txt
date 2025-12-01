@@ -7,3 +7,41 @@ Round 5, 10, 15. Bosses
 Make opptions after random rounds to fight harder enemy for loot or rest.
 Destiny 2 Style enemies and classes.
 Potentially basic abilities.
+Have different enemy types per playthrough. Hive, Cabal, etc...
+Start with three races add more later.
+
+Basic Enemies: Hive 
+Thrall
+Accolyte
+Cursed Thrall
+Hive Knight
+Wizard
+Ogre
+
+Basic Enemies: Fallen 
+Dreg
+Vandal
+Marauder
+Shank
+Servitor
+Captain
+
+Basic Enemies: Vex
+Hobgoblin
+Fanatic
+Minotaur
+Hydra
+Harpy
+Cyclops
+
+Classes: Titan
+Higher Health lower damage
+Abilities: Flaming Hammer, I forget name but the lightning ranged melee, Void shield throw, and void overshield.
+
+Classes: Warlock 
+Mid Health Mid damage
+Abilities: I need to look into warlock abilites still
+
+CLasses: Hunter
+Low Health High damage
+Abilities: Throwing Knife, Staff Slide, Smoke Grenade, Void Dodge
