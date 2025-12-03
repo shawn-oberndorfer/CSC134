@@ -49,7 +49,6 @@ struct EnemyType {
     bool isBoss = false;
 };
 
-// Result of an enemy action
 struct EnemyActionResult {
     int damage;         // damage dealt this turn (0 if charging or no damage)
     string message;     // message to print
@@ -74,36 +73,30 @@ public:
     int getMaxHealth() const { return type.maxHealth; }
     bool alive() const { return health > 0; }
 
-    // choose a random attack from available attacks
     Attack chooseAttack() const {
         if (type.attacks.empty()) return Attack("Bash", 1, 2, false);
         int idx = rand() % type.attacks.size();
         return type.attacks[idx];
     }
 
-    // start charging an attack
     void startCharging(const Attack &a) {
         pendingAttack = a;
-        chargeRemaining = max(1, a.chargeTurns); // ensure at least 1 if charge specified
+        chargeRemaining = max(1, a.chargeTurns);
         hasPending = true;
     }
 
-    // Called each enemy turn to either charge or execute an attack
     EnemyActionResult takeTurn() {
         if (!alive()) return EnemyActionResult(0, getName() + " is down.", false);
 
-        // If currently charging, decrement and possibly fire
         if (hasPending) {
             if (chargeRemaining > 1) {
                 chargeRemaining--;
                 return EnemyActionResult(0, getName() + " continues charging " + pendingAttack.name + ".", false);
             } else {
-                // chargeRemaining == 1 -> this turn the attack fires
                 int dmg = pendingAttack.getDamage();
                 string msg = getName() + " fires " + pendingAttack.name + " for " + to_string(dmg) + " damage!";
                 bool died = false;
                 if (pendingAttack.selfDestruct) {
-                    // attacker kills itself
                     health = 0;
                     died = true;
                     msg += " " + getName() + " explodes and is destroyed!";
@@ -114,14 +107,11 @@ public:
             }
         }
 
-        // Not charging: pick an attack
         Attack a = chooseAttack();
         if (a.chargeTurns > 0) {
-            // begin charging this attack
             startCharging(a);
             return EnemyActionResult(0, getName() + " begins charging " + a.name + ".", false);
         } else {
-            // immediate attack
             int dmg = a.getDamage();
             string msg = getName() + " uses " + a.name + " for " + to_string(dmg) + " damage!";
             return EnemyActionResult(dmg, msg, false);
@@ -137,39 +127,41 @@ public:
 };
 
 // -------------------- Faction enemy pools --------------------
+// Adjusted enemy damage ranges: min reduced slightly, max increased slightly for punchy predictable hits.
+// HP values will be further scaled per round in spawnEnemiesForRound.
 vector<EnemyType> hiveEnemies = {
-    {"Thrall", 50, { Attack("Claw Slash", 4, 8, false), Attack("Leap Attack", 6, 10, false) }},
-    {"Accolyte", 70, { Attack("Dark Shot", 6, 12, true) }},
-    {"Cursed Thrall", 60, {
-        Attack("Self-Destruct", 60, 80, false, 2, true) // charges 2 turns then explodes, killing itself
+    {"Thrall", 60, { Attack("Claw Slash", 4, 9, false), Attack("Leap Attack", 6, 11, false) }},
+    {"Accolyte", 80, { Attack("Dark Shot", 6, 13, true) }},
+    {"Cursed Thrall", 70, {
+        Attack("Self-Destruct", 60, 80, false, 2, true)
     }},
-    {"Hive Knight", 150, { Attack("Shielded Slash", 12, 18, false), Attack("Sword Throw", 10, 16, true) }},
-    {"Wizard", 120, { Attack("Arc Blast", 14, 20, true), Attack("Void Nova", 10, 18, false) }},
-    {"Ogre", 200, { Attack("Ground Slam", 18, 25, false), Attack("Eye Beam", 22, 30, true, 2, false) }}
+    {"Hive Knight", 170, { Attack("Shielded Slash", 11, 20, false), Attack("Sword Throw", 11, 18, true) }},
+    {"Wizard", 140, { Attack("Arc Blast", 13, 22, true), Attack("Void Nova", 11, 20, false) }},
+    {"Ogre", 260, { Attack("Ground Slam", 16, 28, false), Attack("Eye Beam", 24, 34, true, 2, false) }}
 };
 
 vector<EnemyType> fallenEnemies = {
-    {"Dreg", 40, { Attack("Knife Slash", 4, 8, false), Attack("Pistol Shot", 6, 12, true) }},
-    {"Vandal", 75, { Attack("Rifle Burst", 8, 14, true), Attack("Charge", 6, 10, false) }},
-    {"Marauder", 85, { Attack("Axe Swing", 10, 16, false), Attack("Grenade Toss", 12, 18, true) }},
-    {"Shank", 30, { Attack("Shank Jab", 3, 6, false), Attack("Shrapnel Shot", 4, 8, true) }},
-    {"Servitor", 110, { Attack("Energy Beam", 12, 18, true) }},
-    {"Captain", 120, { Attack("Sword Strike", 15, 20, false), Attack("Plasma Rifle", 18, 25, true) }}
+    {"Dreg", 44, { Attack("Knife Slash", 4, 9, false), Attack("Pistol Shot", 6, 13, true) }},
+    {"Vandal", 82, { Attack("Rifle Burst", 7, 15, true), Attack("Charge", 6, 11, false) }},
+    {"Marauder", 95, { Attack("Axe Swing", 9, 18, false), Attack("Grenade Toss", 11, 20, true) }},
+    {"Shank", 33, { Attack("Shank Jab", 3, 7, false), Attack("Shrapnel Shot", 4, 9, true) }},
+    {"Servitor", 120, { Attack("Energy Beam", 11, 20, true) }},
+    {"Captain", 132, { Attack("Sword Strike", 14, 22, false), Attack("Plasma Rifle", 17, 27, true) }}
 };
 
 vector<EnemyType> vexEnemies = {
-    {"Hobgoblin", 80, { Attack("Sniper Beam", 12, 18, true), Attack("Energy Punch", 10, 14, false) }},
-    {"Fanatic", 70, { Attack("Ritual Bolt", 10, 16, true), Attack("Frenzy Swipe", 8, 12, false) }},
-    {"Minotaur", 160, { Attack("Heavy Laser", 20, 28, true), Attack("Ram", 14, 20, false) }},
-    {"Hydra", 140, { Attack("Multi-Beam", 16, 22, true), Attack("Tail Whip", 10, 16, false) }},
-    {"Harpy", 60, { Attack("Dive Bomb", 8, 14, false), Attack("Sonic Shot", 6, 12, true) }},
-    {"Cyclops", 250, { Attack("Laser Cannon", 30, 40, true), Attack("Shockwave", 25, 35, false) }}
+    {"Hobgoblin", 88, { Attack("Sniper Beam", 11, 20, true), Attack("Energy Punch", 10, 15, false) }},
+    {"Fanatic", 77, { Attack("Ritual Bolt", 9, 18, true), Attack("Frenzy Swipe", 8, 13, false) }},
+    {"Minotaur", 200, { Attack("Heavy Laser", 18, 30, true), Attack("Ram", 13, 22, false) }},
+    {"Hydra", 160, { Attack("Multi-Beam", 15, 24, true), Attack("Tail Whip", 10, 18, false) }},
+    {"Harpy", 66, { Attack("Dive Bomb", 8, 15, false), Attack("Sonic Shot", 6, 13, true) }},
+    {"Cyclops", 300, { Attack("Laser Cannon", 28, 44, true), Attack("Shockwave", 24, 38, false) }}
 };
 
-// Boss templates (one per faction)
-EnemyType hiveBoss = {"Hive Ogre Overlord", 400, { Attack("Cataclysmic Slam", 30, 45, false), Attack("Void Eye Beam", 35, 50, true, 2, false) }, true};
-EnemyType fallenBoss = {"Fallen Baron", 350, { Attack("Baron Cleave", 28, 40, false), Attack("Arc Barrage", 30, 42, true) }, true};
-EnemyType vexBoss = {"Vex Hydra Prime", 420, { Attack("Prime Laser", 32, 48, true), Attack("Phase Crush", 28, 40, false) }, true};
+// Boss templates (one per faction) - keep high but slightly increased to match player buffs
+EnemyType hiveBoss = {"Hive Ogre Overlord", 440, { Attack("Cataclysmic Slam", 32, 48, false), Attack("Void Eye Beam", 38, 54, true, 2, false) }, true};
+EnemyType fallenBoss = {"Fallen Baron", 380, { Attack("Baron Cleave", 30, 44, false), Attack("Arc Barrage", 32, 46, true) }, true};
+EnemyType vexBoss = {"Vex Hydra Prime", 460, { Attack("Prime Laser", 34, 52, true), Attack("Phase Crush", 30, 44, false) }, true};
 
 // -------------------- Player --------------------
 enum ClassType { TITAN, WARLOCK, HUNTER };
@@ -198,22 +190,22 @@ class Player {
 public:
     Player(string n, ClassType c) : name(n), cls(c), weaponBoost(0) {
         if (c == TITAN) {
-            maxHealth = 220; health = maxHealth;
-            baseDamageMin = 14; baseDamageMax = 22;
-            abilities.push_back(Ability("Fists of Havoc", 4, 70, "Heavy melee strike"));
+            maxHealth = 260; health = maxHealth; // increased
+            baseDamageMin = 16; baseDamageMax = 24; // increased
+            abilities.push_back(Ability("Fists of Havoc", 4, 80, "Heavy melee strike")); // stronger
             abilities.push_back(Ability("Arc Staff Throw", 5, 50, "Ranged lightning melee strike"));
-            abilities.push_back(Ability("Void Shield Throw", 6, 20, "Damage + shield (temporary)"));
-            abilities.push_back(Ability("Void Overshield", 8, 40, "Gain overshield"));
+            abilities.push_back(Ability("Void Shield Throw", 6, 30, "Damage + heal (temporary)")); // stronger heal
+            abilities.push_back(Ability("Void Overshield", 8, 60, "Gain overshield")); // stronger overshield/heal
         } else if (c == WARLOCK) {
-            maxHealth = 160; health = maxHealth;
-            baseDamageMin = 16; baseDamageMax = 24;
-            abilities.push_back(Ability("Nova Bomb", 5, 80, "High damage AoE"));
-            abilities.push_back(Ability("Healing Rift", 6, 50, "Heal over time"));
-            abilities.push_back(Ability("Chaos Reach", 4, 60, "Ark ranged beam"));
+            maxHealth = 180; health = maxHealth; // increased
+            baseDamageMin = 18; baseDamageMax = 26; // increased
+            abilities.push_back(Ability("Nova Bomb", 5, 100, "High damage AoE")); // much stronger AoE
+            abilities.push_back(Ability("Healing Rift", 6, 60, "Heal over time")); // stronger heal
+            abilities.push_back(Ability("Chaos Reach", 4, 60, "Arc ranged beam"));
         } else { // HUNTER
-            maxHealth = 130; health = maxHealth;
-            baseDamageMin = 20; baseDamageMax = 30;
-            abilities.push_back(Ability("Throwing Knife", 3, 60, "High single-target damage"));
+            maxHealth = 150; health = maxHealth; // increased
+            baseDamageMin = 22; baseDamageMax = 34; // increased
+            abilities.push_back(Ability("Throwing Knife", 3, 80, "High single-target damage")); // stronger
             abilities.push_back(Ability("Staff Slide", 4, 36, "Quick melee with mobility"));
             abilities.push_back(Ability("Smoke Grenade", 5, 20, "Dodge/avoid damage for a turn"));
             abilities.push_back(Ability("Void Dodge", 6, 30, "Evade and counter"));
@@ -264,9 +256,9 @@ public:
             } else if (a.name == "Void Shield Throw") {
                 dmg = a.power/2 + (rand() % 11);
                 target.takeDamage(dmg);
-                heal(20);
+                heal(30); // stronger heal
             } else if (a.name == "Void Overshield") {
-                heal(a.power/2);
+                heal(a.power/2); // treat as strong temporary heal/overshield
             }
         } else if (clsName == "Warlock") {
             if (a.name == "Nova Bomb") {
@@ -277,7 +269,7 @@ public:
                 }
                 dmg = a.power;
             } else if (a.name == "Healing Rift") {
-                heal(a.power/2);
+                heal(a.power/2); // heal over time simplified to instant partial heal
             } else if (a.name == "Chaos Reach") {
                 dmg = a.power + (rand() % 16);
                 target.takeDamage(dmg);
@@ -328,6 +320,23 @@ int getIntInput(int minv, int maxv) {
     return choice;
 }
 
+bool getYesNo(const string &prompt) {
+    while (true) {
+        cout << prompt << " (y/n): ";
+        string s;
+        if (!(cin >> s)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        if (s.empty()) continue;
+        char c = tolower(s[0]);
+        if (c == 'y') return true;
+        if (c == 'n') return false;
+        pl("Please enter 'y' or 'n'.");
+    }
+}
+
 EnemyType randomFrom(const vector<EnemyType>& pool) {
     int idx = rand() % pool.size();
     return pool[idx];
@@ -337,7 +346,13 @@ EnemyType randomFrom(const vector<EnemyType>& pool) {
 vector<Enemy> spawnEnemiesForRound(int round, const vector<EnemyType>& pool, const EnemyType& bossType) {
     vector<Enemy> enemies;
     if (round == 5 || round == 10 || round == 15) {
-        enemies.push_back(Enemy(bossType));
+        // Boss round: slightly scale boss HP with round to keep challenge
+        EnemyType boss = bossType;
+        double bossMult = 1.0;
+        if (round == 10) bossMult = 1.05;
+        if (round == 15) bossMult = 1.1;
+        boss.maxHealth = int(boss.maxHealth * bossMult);
+        enemies.push_back(Enemy(boss));
         return enemies;
     }
     int count = 1;
@@ -347,8 +362,18 @@ vector<Enemy> spawnEnemiesForRound(int round, const vector<EnemyType>& pool, con
         if (round == 10) count = 1;
         else count = 3;
     }
+
+    // Determine HP multiplier by round (early easier, mid harder, late hardest)
+    double roundMult = 1.0;
+    if (round <= 3) roundMult = 0.95;
+    else if (round <= 5) roundMult = 1.05;
+    else if (round <= 8) roundMult = 1.15;
+    else if (round <= 12) roundMult = 1.30;
+    else roundMult = 1.40;
+
     for (int i = 0; i < count; ++i) {
         EnemyType et = randomFrom(pool);
+        et.maxHealth = max(1, int(et.maxHealth * roundMult));
         enemies.push_back(Enemy(et));
     }
     return enemies;
@@ -361,12 +386,8 @@ void printEnemyStatus(const vector<Enemy>& enemies) {
     }
 }
 
-// -------------------- Main game loop --------------------
-int main() {
-    srand((unsigned)time(0));
-    pl("=== Destiny-style Roguelike ===");
-    pl("");
-
+// -------------------- Game run (single playthrough) --------------------
+bool runPlaythrough() {
     // Choose faction for this playthrough (exact lines requested)
     vector<string> factions = {"Hive", "Fallen", "Vex"};
     int factionChoice = rand() % factions.size();
@@ -496,14 +517,16 @@ int main() {
 
             if (!player.alive()) {
                 pl("You have been defeated on round " + to_string(round) + ". Game over.");
-                return 0;
+                // prompt to play again
+                bool again = getYesNo("Play again?");
+                return again;
             }
         } // end combat loop
 
         pl("Round " + to_string(round) + " cleared!");
         // reward: small heal and chance for weapon boost
-        player.heal(15);
-        pl("You rest briefly and heal 15 HP. (" + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()) + ")");
+        player.heal(20); // slightly larger passive heal
+        pl("You rest briefly and heal 20 HP. (" + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()) + ")");
 
         // Random post-round event: offer elite fight or rest (30% chance)
         int eventRoll = rand() % 100;
@@ -524,16 +547,18 @@ int main() {
                 }
                 Enemy e(elite);
                 pl("You engage " + e.getName() + " (" + to_string(e.getHealth()) + " HP)");
-                // simple duel
+
+                // elite duel loop — text output matches the rest of the game
                 while (player.alive() && e.alive()) {
                     pl("Your HP: " + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()));
+                    pl("Enemy: " + e.getName() + " (" + to_string(e.getHealth()) + "/" + to_string(e.getMaxHealth()) + ")");
                     pl("1) Attack  2) Ability");
                     cout << "Choose: ";
                     int a = getIntInput(1,2);
                     if (a == 1) {
                         int dmg = player.attackDamage();
                         e.takeDamage(dmg);
-                        pl("You hit for " + to_string(dmg) + ". Elite HP: " + to_string(e.getHealth()));
+                        pl("You hit for " + to_string(dmg) + ". " + e.getName() + " HP: " + to_string(e.getHealth()));
                     } else {
                         auto &abs = player.getAbilities();
                         bool anyReady = false;
@@ -541,7 +566,7 @@ int main() {
 
                         pl("Abilities (enter 0 to go back):");
                         for (size_t i = 0; i < abs.size(); ++i) {
-                            pl(to_string(i+1) + ") " + abs[i].name + " (CD " + to_string(abs[i].cooldown) + ")");
+                            pl("  " + to_string(i+1) + ") " + abs[i].name + " (CD " + to_string(abs[i].cooldown) + ")");
                         }
                         if (!anyReady) pl("All abilities appear to be on cooldown. You can press 0 to go back and choose another action.");
 
@@ -556,6 +581,8 @@ int main() {
                         if (res >= 0) pl("Ability dealt " + to_string(res) + " damage.");
                         else if (res == -3) pl("Ability on cooldown.");
                     }
+
+                    // Elite's turn (may charge or fire)
                     if (e.alive()) {
                         EnemyActionResult ar = e.takeTurn();
                         pl(ar.message);
@@ -565,14 +592,23 @@ int main() {
                         }
                         if (ar.attackerDied) pl(e.getName() + " has been destroyed by its own attack.");
                     }
+
                     player.tickCooldowns();
+
+                    if (!player.alive()) {
+                        pl("You were killed by the elite. Game over.");
+                        bool again = getYesNo("Play again?");
+                        return again;
+                    }
                 }
+
                 if (player.alive()) {
                     pl("You defeated the elite! Loot: weapon boost +2.");
                     player.addWeaponBoost(2);
                 } else {
                     pl("You were killed by the elite. Game over.");
-                    return 0;
+                    bool again = getYesNo("Play again?");
+                    return again;
                 }
             } else {
                 pl("You rest and recover 25 HP.");
@@ -582,8 +618,8 @@ int main() {
 
         // Boss reward on boss rounds
         if (round == 5 || round == 10 || round == 15) {
-            pl("Boss defeated! You gain a major weapon upgrade (+5 damage) and heal fully.");
-            player.addWeaponBoost(5);
+            pl("Boss defeated! You gain a major weapon upgrade (+6 damage) and heal fully.");
+            player.addWeaponBoost(6); // increased boss reward
             player.heal(player.getMaxHealth());
         }
 
@@ -592,9 +628,29 @@ int main() {
         pl("");
     } // end rounds
 
+    // Player survived all rounds
     pl("Congratulations! You survived 15 rounds. Final stats:");
     pl("HP: " + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()));
     pl("Weapon boost: (+" + to_string(player.getWeaponBoost()) + ")");
-    pl("Thanks for playing.");
+    pl("Thanks for playing the prototype.");
+    bool again = getYesNo("Play again?");
+    return again;
+}
+
+// -------------------- Main --------------------
+int main() {
+    srand((unsigned)time(0));
+    pl("=== Destiny-style Roguelike (Console) ===");
+    pl("");
+
+    while (true) {
+        bool playAgain = runPlaythrough();
+        if (!playAgain) {
+            pl("Goodbye.");
+            break;
+        }
+        pl("\nRestarting...\n");
+    }
+
     return 0;
 }
