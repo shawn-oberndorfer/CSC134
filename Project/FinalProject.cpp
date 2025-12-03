@@ -595,6 +595,6 @@ int main() {
     pl("Congratulations! You survived 15 rounds. Final stats:");
     pl("HP: " + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()));
     pl("Weapon boost: (+" + to_string(player.getWeaponBoost()) + ")");
-    pl("Thanks for playing the prototype.");
+    pl("Thanks for playing.");
     return 0;
 }
