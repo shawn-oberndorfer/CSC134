@@ -127,40 +127,48 @@ public:
 };
 
 // -------------------- Faction enemy pools --------------------
+// Reduce enemy base health (around line 133):
 vector<EnemyType> hiveEnemies = {
-    {"Thrall", 60, { Attack("Claw Slash", 4, 9, false), Attack("Leap Attack", 6, 11, false) }},
-    {"Accolyte", 80, { Attack("Dark Shot", 6, 13, true) }},
-    {"Cursed Thrall", 70, {
-        Attack("Self-Destruct", 60, 80, false, 2, true)
-    }},
-    {"Hive Knight", 170, { Attack("Shielded Slash", 11, 20, false), Attack("Sword Throw", 11, 18, true) }},
-    {"Wizard", 140, { Attack("Arc Blast", 13, 22, true), Attack("Void Nova", 11, 20, false) }},
-    {"Ogre", 260, { Attack("Ground Slam", 16, 28, false), Attack("Eye Beam", 24, 34, true, 2, false) }}
+    {"Thrall", 45, { Attack("Claw Slash", 4, 8, false), Attack("Leap Attack", 6, 10, false) }}, // was 60
+    {"Accolyte", 60, { Attack("Dark Shot", 6, 12, true) }}, // was 80
+    {"Cursed Thrall", 55, { Attack("Self-Destruct", 50, 70, false, 2, true) }}, // was 70, damage reduced
+    {"Hive Knight", 130, { Attack("Shielded Slash", 10, 18, false), Attack("Sword Throw", 10, 16, true) }}, // was 170
+    {"Wizard", 110, { Attack("Arc Blast", 12, 20, true), Attack("Void Nova", 10, 18, false) }}, // was 140
+    {"Ogre", 200, { Attack("Ground Slam", 14, 24, false), Attack("Eye Beam", 20, 28, true, 2, false) }} // was 260
 };
 
 vector<EnemyType> fallenEnemies = {
-    {"Dreg", 44, { Attack("Knife Slash", 4, 9, false), Attack("Pistol Shot", 6, 13, true) }},
-    {"Vandal", 82, { Attack("Rifle Burst", 7, 15, true), Attack("Charge", 6, 11, false) }},
-    {"Marauder", 95, { Attack("Axe Swing", 9, 18, false), Attack("Grenade Toss", 11, 20, true) }},
-    {"Shank", 33, { Attack("Shank Jab", 3, 7, false), Attack("Shrapnel Shot", 4, 9, true) }},
-    {"Servitor", 120, { Attack("Energy Beam", 11, 20, true) }},
-    {"Captain", 132, { Attack("Sword Strike", 14, 22, false), Attack("Plasma Rifle", 17, 27, true) }}
+    {"Dreg", 35, { Attack("Knife Slash", 4, 8, false), Attack("Pistol Shot", 5, 11, true) }}, // was 44
+    {"Vandal", 65, { Attack("Rifle Burst", 6, 13, true), Attack("Charge", 5, 10, false) }}, // was 82
+    {"Marauder", 75, { Attack("Axe Swing", 8, 16, false), Attack("Grenade Toss", 10, 18, true) }}, // was 95
+    {"Shank", 28, { Attack("Shank Jab", 3, 6, false), Attack("Shrapnel Shot", 4, 8, true) }}, // was 33
+    {"Servitor", 95, { Attack("Energy Beam", 10, 18, true) }}, // was 120
+    {"Captain", 105, { Attack("Sword Strike", 12, 20, false), Attack("Plasma Rifle", 15, 24, true) }} // was 132
 };
 
 vector<EnemyType> vexEnemies = {
-    {"Hobgoblin", 88, { Attack("Sniper Beam", 11, 20, true), Attack("Energy Punch", 10, 15, false) }},
-    {"Fanatic", 77, { Attack("Ritual Bolt", 9, 18, true), Attack("Frenzy Swipe", 8, 13, false) }},
-    {"Minotaur", 200, { Attack("Heavy Laser", 18, 30, true), Attack("Ram", 13, 22, false) }},
-    {"Hydra", 160, { Attack("Multi-Beam", 15, 24, true), Attack("Tail Whip", 10, 18, false) }},
-    {"Harpy", 66, { Attack("Dive Bomb", 8, 15, false), Attack("Sonic Shot", 6, 13, true) }},
-    {"Cyclops", 300, { Attack("Laser Cannon", 28, 44, true), Attack("Shockwave", 24, 38, false) }}
+    {"Hobgoblin", 70, { Attack("Sniper Beam", 10, 18, true), Attack("Energy Punch", 9, 14, false) }}, // was 88
+    {"Fanatic", 60, { Attack("Ritual Bolt", 8, 16, true), Attack("Frenzy Swipe", 7, 12, false) }}, // was 77
+    {"Minotaur", 155, { Attack("Heavy Laser", 16, 26, true), Attack("Ram", 12, 20, false) }}, // was 200
+    {"Hydra", 125, { Attack("Multi-Beam", 13, 21, true), Attack("Tail Whip", 9, 16, false) }}, // was 160
+    {"Harpy", 52, { Attack("Dive Bomb", 7, 13, false), Attack("Sonic Shot", 5, 11, true) }}, // was 66
+    {"Cyclops", 230, { Attack("Laser Cannon", 24, 38, true), Attack("Shockwave", 20, 32, false) }} // was 300
 };
 
-// Boss templates (one per faction)
-EnemyType hiveBoss = {"Hive Ogre Overlord", 440, { Attack("Cataclysmic Slam", 32, 48, false), Attack("Void Eye Beam", 38, 54, true, 2, false) }, true};
-EnemyType fallenBoss = {"Fallen Baron", 380, { Attack("Baron Cleave", 30, 44, false), Attack("Arc Barrage", 32, 46, true) }, true};
-EnemyType vexBoss = {"Vex Hydra Prime", 460, { Attack("Prime Laser", 34, 52, true), Attack("Phase Crush", 30, 44, false) }, true};
+EnemyType hiveBoss = {"Hive Ogre Overlord", 350, { 
+    Attack("Cataclysmic Slam", 28, 42, false), 
+    Attack("Void Eye Beam", 32, 46, true, 2, false) 
+}, true};
 
+EnemyType fallenBoss = {"Fallen Baron", 300, { 
+    Attack("Baron Cleave", 26, 38, false), 
+    Attack("Arc Barrage", 28, 40, true) 
+}, true};
+
+EnemyType vexBoss = {"Vex Hydra Prime", 370, { 
+    Attack("Prime Laser", 30, 45, true), 
+    Attack("Phase Crush", 26, 38, false) 
+}, true};
 // -------------------- Player --------------------
 enum ClassType { TITAN, WARLOCK, HUNTER };
 
@@ -189,21 +197,21 @@ class Player {
 public:
     Player(string n, ClassType c) : name(n), cls(c), weaponBoost(0), overshield(0) {
         if (c == TITAN) {
-            maxHealth = 260; health = maxHealth; // increased
-            baseDamageMin = 16; baseDamageMax = 24; // increased
+            maxHealth = 300; health = maxHealth; // increased
+            baseDamageMin = 18; baseDamageMax = 28; // increased
             abilities.push_back(Ability("Fists of Havoc", 4, 80, "Heavy melee strike"));
             abilities.push_back(Ability("Flamming Hammer Strike", 5, 50, "Ranged solar melee strike"));
             abilities.push_back(Ability("Void Shield Throw", 3, 30, "Damage + grant overshield"));
             abilities.push_back(Ability("Void Overshield", 5, 60, "Grant a strong overshield"));
         } else if (c == WARLOCK) {
-            maxHealth = 180; health = maxHealth; // increased
-            baseDamageMin = 18; baseDamageMax = 26; // increased
+            maxHealth = 220; health = maxHealth; // increased
+            baseDamageMin = 20; baseDamageMax = 30; // increased
             abilities.push_back(Ability("Nova Bomb", 5, 100, "High damage AoE"));
             abilities.push_back(Ability("Healing Rift", 6, 60, "Heal over time"));
             abilities.push_back(Ability("Chaos Reach", 4, 60, "Arc ranged beam"));
         } else { // HUNTER
-            maxHealth = 150; health = maxHealth; // increased
-            baseDamageMin = 22; baseDamageMax = 34; // increased
+            maxHealth = 180; health = maxHealth; // increased
+            baseDamageMin = 24; baseDamageMax = 38; // increased
             abilities.push_back(Ability("Throwing Knife", 3, 80, "High single-target damage"));
             abilities.push_back(Ability("Staff Slide", 4, 36, "Quick melee with mobility"));
             abilities.push_back(Ability("Smoke Grenade", 5, 20, "Dodge/avoid damage for a turn"));
@@ -528,7 +536,7 @@ bool runPlaythrough() {
                     else if (res == -3) pl("Ability on cooldown.");
                     else {
                         pl("You used " + abs[ai].name + ".");
-                        if (res > 0) pl("It dealt " + to_string(res) + " damage (or AoE equivalent).");
+                        if (res > 0) pl("It dealt " + to_string(res) + " damage.");
                         actionTaken = true;
                     }
                 }
@@ -559,7 +567,7 @@ bool runPlaythrough() {
         } // end combat loop
 
         pl("Round " + to_string(round) + " cleared!");
-        player.heal(20); // slightly larger passive heal (prints)
+        player.heal(5);
         pl("You rest briefly. (" + player.statusString() + ")");
 
         // Random post-round event: offer elite fight or rest (30% chance)
@@ -567,7 +575,7 @@ bool runPlaythrough() {
         if (eventRoll < 30 && round != 15) {
             pl("\nA patrol reports a tougher enemy nearby. Do you:");
             pl("1) Fight the elite for potential loot");
-            pl("2) Rest and recover (heal 25)");
+            pl("2) Rest and recover");
             cout << "Enter: ";
             int choice = getIntInput(1,2);
             if (choice == 1) {
@@ -652,24 +660,24 @@ bool runPlaythrough() {
 
 
                 if (player.alive()) {
-                    pl("You defeated the elite! Loot: weapon boost +2.");
-                    player.addWeaponBoost(2);
+                    pl("You defeated the elite! Loot: weapon boost +4.");
+                    player.addWeaponBoost(4);
                 } else {
                     pl("You were killed by the elite. Game over.");
                     bool again = getYesNo("Play again?");
                     return again;
                 }
             } else {
-                pl("You rest and recover 25 HP.");
-                player.heal(25);
+                pl("You rest and recover 50 HP.");
+                player.heal(50);
                 pl("You now have: " + player.statusString());
             }
         }
 
         // Boss reward on boss rounds
         if (round == 5 || round == 10 || round == 15) {
-            pl("Boss defeated! You gain a major weapon upgrade (+6 damage) and heal fully.");
-            player.addWeaponBoost(6); // increased boss reward
+            pl("Boss defeated! You gain a major weapon upgrade (+8 damage) and heal fully.");
+            player.addWeaponBoost(8); // increased boss reward
             player.heal(player.getMaxHealth());
             pl("You now have: " + player.statusString());
         }
