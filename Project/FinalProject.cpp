@@ -209,7 +209,13 @@ public:
             abilities.push_back(Ability("Smoke Grenade", 5, 20, "Dodge/avoid damage for a turn"));
             abilities.push_back(Ability("Void Dodge", 6, 30, "Evade and counter"));
         }
+
     }
+
+    int useAbility(int idx, Enemy &target) {
+        std::vector<Enemy> empty;
+        return useAbility(idx, target, empty);
+        }
 
     string getClassName() const {
         if (cls == TITAN) return "Titan";
@@ -576,46 +582,61 @@ bool runPlaythrough() {
                 pl("You engage " + e.getName() + " (" + to_string(e.getHealth()) + " HP)");
 
                 // elite duel loop — text output matches the rest of the game
+               // elite duel loop — now matches normal fight text style
                 while (player.alive() && e.alive()) {
-                    pl("Your HP: " + player.statusString());
+                    pl("\nPlayer: " + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()));
                     pl("Enemy: " + e.getName() + " (" + to_string(e.getHealth()) + "/" + to_string(e.getMaxHealth()) + ")");
-                    pl("1) Attack  2) Ability");
-                    cout << "Choose: ";
-                    int a = getIntInput(1,2);
-                    if (a == 1) {
-                        int dmg = player.attackDamage();
-                        e.takeDamage(dmg);
-                        pl("You hit for " + to_string(dmg) + ". " + e.getName() + " HP: " + to_string(e.getHealth()));
-                    } else {
-                        auto &abs = player.getAbilities();
-                        bool anyReady = false;
-                        for (auto &ab : abs) if (ab.ready()) { anyReady = true; break; }
 
-                        pl("Abilities (enter 0 to go back):");
-                        for (size_t i = 0; i < abs.size(); ++i) {
-                            pl("  " + to_string(i+1) + ") " + abs[i].name + " (CD " + to_string(abs[i].cooldown) + ")");
-                        }
-                        if (!anyReady) pl("All abilities appear to be on cooldown. You can press 0 to go back and choose another action.");
+                    // Player turn
+                    bool actionTaken = false;
+                    while (!actionTaken) {
+                        pl("\nChoose action:");
+                        pl("1) Basic Attack");
+                        pl("2) Use Ability");
+                        cout << "Enter: ";
+                        int action = getIntInput(1,2);
 
-                        cout << "Choose ability (0 to cancel): ";
-                        int ai = getIntInput(0, (int)abs.size()) - 1;
-                        if (ai == -1) {
-                            pl("Returning to duel action selection...");
-                            continue;
+                        if (action == 1) {
+                            int dmg = player.attackDamage();
+                            e.takeDamage(dmg);
+                            pl("You attack " + e.getName() + " for " + to_string(dmg) + " damage.");
+                            actionTaken = true;
+                        } else if (action == 2) {
+                            auto &abs = player.getAbilities();
+                            bool anyReady = false;
+                            for (auto &ab : abs) if (ab.ready()) { anyReady = true; break; }
+
+                            pl("Abilities (enter 0 to go back):");
+                            for (size_t i = 0; i < abs.size(); ++i) {
+                                pl("  " + to_string(i+1) + ") " + abs[i].name + " (CD: " + to_string(abs[i].cooldown) + "/" + to_string(abs[i].cooldownMax) + ") - " + abs[i].desc);
+                            }
+                            if (!anyReady) pl("All abilities appear to be on cooldown. You can press 0 to go back and choose another action.");
+
+                            cout << "Choose ability number (0 to cancel): ";
+                            int ai = getIntInput(0, (int)abs.size()) - 1;
+                            if (ai == -1) {
+                                pl("Returning to action selection...");
+                                continue;
+                            }
+
+                            int res = player.useAbility(ai, e);
+                            if (res == -2) pl("Invalid ability.");
+                            else if (res == -3) pl("Ability on cooldown.");
+                            else {
+                                pl("You used " + abs[ai].name + ".");
+                                if (res > 0) pl("It dealt " + to_string(res) + " damage.");
+                                actionTaken = true;
+                            }
                         }
-                        vector<Enemy> tmp; // empty for signature
-                        int res = player.useAbility(ai, e, tmp);
-                        if (res >= 0) pl("Ability dealt " + to_string(res) + " damage.");
-                        else if (res == -3) pl("Ability on cooldown.");
                     }
 
-                    // Elite's turn (may charge or fire)
+                    // Elite's turn
                     if (e.alive()) {
                         EnemyActionResult ar = e.takeTurn();
                         pl(ar.message);
                         if (ar.damage > 0) {
                             player.takeDamage(ar.damage);
-                            pl("You take " + to_string(ar.damage) + " damage. (You: " + player.statusString() + ")");
+                            pl("You take " + to_string(ar.damage) + " damage. (You: " + to_string(player.getHealth()) + "/" + to_string(player.getMaxHealth()) + ")");
                         }
                         if (ar.attackerDied) pl(e.getName() + " has been destroyed by its own attack.");
                     }
@@ -628,6 +649,7 @@ bool runPlaythrough() {
                         return again;
                     }
                 }
+
 
                 if (player.alive()) {
                     pl("You defeated the elite! Loot: weapon boost +2.");
