@@ -95,3 +95,4 @@ If your HP reaches 0 at any point, the game ends. You'll be prompted to play aga
 **Course**: CSC 134 Final Project  
 **Game Type**: Turn-based Roguelike
 This README was written by Claude AI
+This program can be shared.
