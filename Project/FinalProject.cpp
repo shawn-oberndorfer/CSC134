@@ -691,7 +691,7 @@ bool runPlaythrough() {
     pl("Congratulations! You survived 15 rounds. Final stats:");
     pl("HP: " + player.statusString());
     pl("Weapon boost: (+" + to_string(player.getWeaponBoost()) + ")");
-    pl("Thanks for playing the prototype.");
+    pl("Thanks for playing.");
     bool again = getYesNo("Play again?");
     return again;
 }
