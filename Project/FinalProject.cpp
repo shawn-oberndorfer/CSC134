@@ -155,6 +155,16 @@ vector<EnemyType> vexEnemies = {
     {"Cyclops", 230, { Attack("Laser Cannon", 24, 38, true), Attack("Shockwave", 20, 32, false) }} 
 };
 
+/* Unfinished new enemy type
+vector<EnemyType> cabalEnemies = {
+    {"Legionary", hp, {Attack("", mindmg, maxdmg, isranged), Attack("", mindmg, maxdmg isranged) }},
+    {"Phalanx", hp, {Attack("", mindmg, maxdmg, isranged), Attack("", mindmg, maxdmg isranged) }},
+    {"Psion", hp, {Attack("", mindmg, maxdmg, isranged), Attack("", mindmg, maxdmg isranged) }},
+    {"War Beast", hp, {Attack("", mindmg, maxdmg, isranged), Attack("", mindmg, maxdmg isranged) }},
+    {"Centurion", hp, {Attack("", mindmg, maxdmg, isranged), Attack("", mindmg, maxdmg isranged) }},
+    {"Colossus", hp, {Attack("", mindmg, maxdmg, isranged), Attack("", mindmg, maxdmg isranged) }},
+};*/
+
 EnemyType hiveBoss = {"Hive Ogre Overlord", 350, { 
     Attack("Cataclysmic Slam", 28, 42, false), 
     Attack("Void Eye Beam", 32, 46, true, 2, false) 
@@ -169,6 +179,12 @@ EnemyType vexBoss = {"Vex Hydra Prime", 370, {
     Attack("Prime Laser", 30, 45, true), 
     Attack("Phase Crush", 26, 38, false) 
 }, true};
+
+/* Unfinishd Cabal Boss
+EnemyType cabalBoss = {"Goliath Tank", hp, {
+    Attack("", mindmg, maxdmg, isranged),
+    Attack("", mindmg, maxdmg, isranged),
+    }};*/
 // -------------------- Player --------------------
 enum ClassType { TITAN, WARLOCK, HUNTER };
 
@@ -437,7 +453,7 @@ void printEnemyStatus(const vector<Enemy>& enemies) {
 // -------------------- Game run (single playthrough) --------------------
 bool runPlaythrough() {
     // Choose faction for this playthrough (exact lines requested)
-    vector<string> factions = {"Hive", "Fallen", "Vex"};
+    vector<string> factions = {"Hive", "Fallen", "Vex"/*, "Cabal"*/};
     int factionChoice = rand() % factions.size();
     string faction = factions[factionChoice];
     if (faction == "Hive") {
@@ -446,6 +462,9 @@ bool runPlaythrough() {
         pl("Fallen on the horizon");
     } else if (faction == "Vex") {
         pl("Vex on the field");
+    /*} else if(faction == "Cabal") {
+        pl("Cabal on the field");
+    */
     }
     pl("");
 
@@ -454,7 +473,8 @@ bool runPlaythrough() {
     EnemyType bossType;
     if (faction == "Hive") { enemyPool = hiveEnemies; bossType = hiveBoss; }
     else if (faction == "Fallen") { enemyPool = fallenEnemies; bossType = fallenBoss; }
-    else { enemyPool = vexEnemies; bossType = vexBoss; }
+    else if (faction == "Vex" ){ enemyPool = vexEnemies; bossType = vexBoss; }
+    //else if (faction == "Cabal" ){ enemyPool = cabalEnemies; bossType =cabalBoss; }
 
     // Player creation
     pl("Choose your class:");
