@@ -129,30 +129,30 @@ public:
 // -------------------- Faction enemy pools --------------------
 // Reduce enemy base health (around line 133):
 vector<EnemyType> hiveEnemies = {
-    {"Thrall", 45, { Attack("Claw Slash", 4, 8, false), Attack("Leap Attack", 6, 10, false) }}, // was 60
-    {"Accolyte", 60, { Attack("Dark Shot", 6, 12, true) }}, // was 80
-    {"Cursed Thrall", 55, { Attack("Self-Destruct", 50, 70, false, 2, true) }}, // was 70, damage reduced
-    {"Hive Knight", 130, { Attack("Shielded Slash", 10, 18, false), Attack("Sword Throw", 10, 16, true) }}, // was 170
-    {"Wizard", 110, { Attack("Arc Blast", 12, 20, true), Attack("Void Nova", 10, 18, false) }}, // was 140
-    {"Ogre", 200, { Attack("Ground Slam", 14, 24, false), Attack("Eye Beam", 20, 28, true, 2, false) }} // was 260
+    {"Thrall", 45, { Attack("Claw Slash", 4, 8, false), Attack("Leap Attack", 6, 10, false) }},
+    {"Accolyte", 60, { Attack("Dark Shot", 6, 12, true) }}, 
+    {"Cursed Thrall", 55, { Attack("Self-Destruct", 50, 70, false, 2, true) }}, 
+    {"Hive Knight", 130, { Attack("Shielded Slash", 10, 18, false), Attack("Sword Throw", 10, 16, true) }}, 
+    {"Wizard", 110, { Attack("Arc Blast", 12, 20, true), Attack("Void Nova", 10, 18, false) }}, 
+    {"Ogre", 200, { Attack("Ground Slam", 14, 24, false), Attack("Eye Beam", 20, 28, true, 2, false) }} 
 };
 
 vector<EnemyType> fallenEnemies = {
-    {"Dreg", 35, { Attack("Knife Slash", 4, 8, false), Attack("Pistol Shot", 5, 11, true) }}, // was 44
-    {"Vandal", 65, { Attack("Rifle Burst", 6, 13, true), Attack("Charge", 5, 10, false) }}, // was 82
-    {"Marauder", 75, { Attack("Axe Swing", 8, 16, false), Attack("Grenade Toss", 10, 18, true) }}, // was 95
-    {"Shank", 28, { Attack("Shank Jab", 3, 6, false), Attack("Shrapnel Shot", 4, 8, true) }}, // was 33
-    {"Servitor", 95, { Attack("Energy Beam", 10, 18, true) }}, // was 120
-    {"Captain", 105, { Attack("Sword Strike", 12, 20, false), Attack("Plasma Rifle", 15, 24, true) }} // was 132
+    {"Dreg", 35, { Attack("Knife Slash", 4, 8, false), Attack("Pistol Shot", 5, 11, true) }},
+    {"Vandal", 65, { Attack("Rifle Burst", 6, 13, true), Attack("Charge", 5, 10, false) }}, 
+    {"Marauder", 75, { Attack("Axe Swing", 8, 16, false), Attack("Grenade Toss", 10, 18, true) }}, 
+    {"Shank", 28, { Attack("Shank Jab", 3, 6, false), Attack("Shrapnel Shot", 4, 8, true) }}, 
+    {"Servitor", 95, { Attack("Energy Beam", 10, 18, true) }}, 
+    {"Captain", 105, { Attack("Sword Strike", 12, 20, false), Attack("Plasma Rifle", 15, 24, true) }} 
 };
 
 vector<EnemyType> vexEnemies = {
-    {"Hobgoblin", 70, { Attack("Sniper Beam", 10, 18, true), Attack("Energy Punch", 9, 14, false) }}, // was 88
-    {"Fanatic", 60, { Attack("Ritual Bolt", 8, 16, true), Attack("Frenzy Swipe", 7, 12, false) }}, // was 77
-    {"Minotaur", 155, { Attack("Heavy Laser", 16, 26, true), Attack("Ram", 12, 20, false) }}, // was 200
-    {"Hydra", 125, { Attack("Multi-Beam", 13, 21, true), Attack("Tail Whip", 9, 16, false) }}, // was 160
-    {"Harpy", 52, { Attack("Dive Bomb", 7, 13, false), Attack("Sonic Shot", 5, 11, true) }}, // was 66
-    {"Cyclops", 230, { Attack("Laser Cannon", 24, 38, true), Attack("Shockwave", 20, 32, false) }} // was 300
+    {"Hobgoblin", 70, { Attack("Sniper Beam", 10, 18, true), Attack("Energy Punch", 9, 14, false) }},
+    {"Fanatic", 60, { Attack("Ritual Bolt", 8, 16, true), Attack("Frenzy Swipe", 7, 12, false) }}, 
+    {"Minotaur", 155, { Attack("Heavy Laser", 16, 26, true), Attack("Ram", 12, 20, false) }}, 
+    {"Hydra", 125, { Attack("Multi-Beam", 13, 21, true), Attack("Tail Whip", 9, 16, false) }},
+    {"Harpy", 52, { Attack("Dive Bomb", 7, 13, false), Attack("Sonic Shot", 5, 11, true) }}, 
+    {"Cyclops", 230, { Attack("Laser Cannon", 24, 38, true), Attack("Shockwave", 20, 32, false) }} 
 };
 
 EnemyType hiveBoss = {"Hive Ogre Overlord", 350, { 
